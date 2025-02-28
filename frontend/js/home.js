@@ -23,20 +23,7 @@ function loadEvents() {
             <img src="${event.mainImage || 'placeholder.jpg'}" alt="Event Image">
             <h3>${event.name}</h3>
             <p>${event.place} / ${event.date}</p>
-            <br><br><br>
-            <button class="edit-event-btn" data-id="${event.id}">Edit</button>
-            <button class="delete-event-btn">Delete</button>
         `;
-
-        // Event listener for Edit button
-        eventCard.querySelector(".edit-event-btn").addEventListener("click", function () {
-            window.location.href = `edit-event.html?id=${event.id}`; // Redirect to edit page with the event ID
-        });
-
-        // Event listener for Delete button
-        eventCard.querySelector(".delete-event-btn").addEventListener("click", function () {
-            deleteEvent(event.id); // Pass event ID to delete
-        });
 
         eventGrid.appendChild(eventCard);
     });
