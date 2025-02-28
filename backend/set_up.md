@@ -16,7 +16,8 @@ POSTGRES SET UP(cmd or terminal)
 psql -U YOUR_USERNAME
 then enter your password
 
-CREATE ROLE team_mang SUPERUSER LOGIN PASSWORD 'team_mang';
+CREATE ROLE team_mang SUPERUSER LOGIN PASSWORD 'admin';
 
+CREATE DATABASE user_info OWNER team_mang; 
 
 
