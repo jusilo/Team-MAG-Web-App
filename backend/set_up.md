@@ -68,3 +68,19 @@ EXECUTE FUNCTION hash_password_before_insert();
 INSERT INTO public.user_info (first_name, last_name, age, email, "password")
 VALUES ('fname', 'lname', 25, 'fname.lname@example.com', 'mypassword');
 
+#create a second table 
+CREATE TABLE public."event" (
+	event_id varchar NOT NULL,
+	event_name varchar NULL,
+	event_creator varchar NULL,
+	event_description text NULL,
+	"location" varchar NULL,
+	event_day date NULL,
+	date_created timestamp NULL,
+	last_updated timestamp NULL,
+	event_attendees int[],
+	uid int not null,
+	CONSTRAINT event_pk PRIMARY KEY (event_id),
+	constraint event_creator_fk foreign key (uid) references public."user_info"(uid)
+	
+);
