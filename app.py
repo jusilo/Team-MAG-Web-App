@@ -25,11 +25,6 @@ app.register_blueprint(register_blueprint)
 def index():
     return render_template('index.html')  # Will look in the 'frontend' folder for this file
 
-# Route for the signup page
-@app.route('/signup')
-def signup():
-    return render_template('signup.html')  # Will look in the 'frontend' folder for this file
-
 # Route for the home page
 @app.route('/home')
 def home_page():

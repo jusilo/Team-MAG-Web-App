@@ -4,7 +4,7 @@ from app import db
 from .model import User  # Import the User model from the main app
 
 # Define the Blueprint
-register_blueprint = Blueprint('register', __name__, template_folder='backend')
+register_blueprint = Blueprint('register', __name__, template_folder='frontend/templates')
 
 # Route for the registration page
 @register_blueprint.route('/signup', methods=['GET', 'POST'])

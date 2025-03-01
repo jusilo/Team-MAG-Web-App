@@ -17,13 +17,13 @@
             
             <!-- ✅ Login Form -->
             <form action="" method="POST">
-                <input type="email" name="email" placeholder="Username (Email)" maxlength="30">
-                <input type="password" name="password" placeholder="Password" maxlength="30">
+                <input type="email" name="email" placeholder="Username (Email)">
+                <input type="password" name="password" placeholder="Password">
                 <button type="submit" class="login-btn">Login</button>
             </form>
 
             <!-- ✅ Signup Button -->
-            <button class="signup-btn" id="signupBtn"><a href="{{ url_for('signup') }}">Sign Up</a></button>
+            <button class="signup-btn" id="signupBtn"><a href="{{ url_for('register.register') }}">Sign Up</a></button>
         </div>
     </div>
 </body>
