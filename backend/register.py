@@ -41,6 +41,6 @@ def register():
         db.session.commit()
 
         flash("User registered successfully!", 'success')
-        return redirect(url_for('home_page'))  # Redirect to the homepage
+        return redirect(url_for('index'))  # Redirect to the homepage
 
     return render_template('signup.html')
