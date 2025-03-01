@@ -1,5 +1,5 @@
 /* script.js */
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
     const loginBtn = document.querySelector(".login-btn");
     const signupBtn = document.querySelector(".signup-btn");
     const usernameInput = document.querySelector("input[type='email']");
@@ -36,6 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("signupBtn").addEventListener("click", function () {
         window.location.href = "signup.html"; // Redirect to signup page
     });
-});
+});*/
 
 

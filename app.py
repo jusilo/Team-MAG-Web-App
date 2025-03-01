@@ -2,9 +2,11 @@ import os
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
+
 # Initialize the Flask application
 app = Flask(__name__, template_folder=os.path.join('frontend', 'templates'), 
             static_folder='frontend/static')  
+
 
 # Secret key for flash messages and sessions
 app.secret_key = os.urandom(24)
@@ -20,6 +22,7 @@ db = SQLAlchemy(app)
 from backend.register import register_blueprint
 app.register_blueprint(register_blueprint)
 
+
 # Route for the home page (index)
 @app.route('/')
 def index():
@@ -32,4 +35,4 @@ def home_page():
 
 # Run the application
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
