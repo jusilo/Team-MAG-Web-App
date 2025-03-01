@@ -1,0 +1,134 @@
+/* General Container */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Left Section - Event Details */
+.event-details {
+    width: 45%;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Image Placeholder */
+.image-container {
+    width: 100%;
+    height: 150px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Description Section */
+.description-title {
+    border: 2px solid purple;
+    display: inline-block;
+    padding: 5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.description-box {
+    border: 2px solid black;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Buttons (Join, Edit, Delete) */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 8px;
+    border: 2px solid black;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+/* Right Section - Image Slider */
+.image-slider {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Placeholder for Image */
+.image-placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Pagination Dots */
+.dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #aaa;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: black;
+}
+
+/* Delete Button */
+.delete-event {
+    margin-top: 20px;
+    padding: 8px 16px;
+    border: 2px solid black;
+    background: none;
+    cursor: pointer;
+}
+
+.delete-event:hover {
+    background-color: #f8d7da;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .event-details,
+    .image-slider {
+        width: 100%;
+    }
+}
