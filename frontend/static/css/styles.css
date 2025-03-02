@@ -54,7 +54,7 @@ input {
     border-radius: 5px;
 }
 
-button {
+button{
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -70,10 +70,20 @@ button {
 }
 
 .signup-btn {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally within its container */
+    align-items: center; /* Centers the button vertically within its container (if needed) */
+    margin-top: 5px;
+    padding-top: 0.5rem;
     background-color: #28a745;
     color: #fff;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    height: 2rem;
+    cursor: pointer;
+    text-align: center; /* Horizontally center the text */
+    line-height: 2rem;  /* Vertically center the text based on the button's height */
+    border: none;
 }
-a{
-    color:white;
-    text-decoration: none !important;
-}
+

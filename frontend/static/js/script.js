@@ -30,12 +30,12 @@
         }
         return true;
     }
-});
+});*
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("signupBtn").addEventListener("click", function () {
         window.location.href = "signup.html"; // Redirect to signup page
     });
-});*/
+});
 
 
