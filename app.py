@@ -22,6 +22,9 @@ db = SQLAlchemy(app)
 from backend.register import register_blueprint
 app.register_blueprint(register_blueprint)
 
+# Register the blueprint for log in
+from backend.log_in import login_blueprint
+app.register_blueprint(login_blueprint)
 
 # Route for the home page (index)
 @app.route('/')
@@ -32,6 +35,8 @@ def index():
 @app.route('/home')
 def home_page():
     return render_template('home.html')  # Will look in the 'frontend' folder for this file
+
+
 
 # Run the application
 if __name__ == '__main__':

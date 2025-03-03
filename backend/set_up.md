@@ -54,7 +54,7 @@ CREATE TABLE public."event" (
 	event_name varchar NULL,
 	event_creator varchar NULL,
 	event_description text NULL,
-	"location" varchar NULL,
+	"location" varchar NULL,g
 	event_day date NULL,
 	date_created timestamp NULL,
 	last_updated timestamp NULL,
