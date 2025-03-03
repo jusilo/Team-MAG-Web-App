@@ -43,28 +43,8 @@ CREATE TABLE public.user_info (
     CONSTRAINT newtable_pk PRIMARY KEY (uid)
 );
 
-#for hashing
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
-
-#create a function for hashing
-#dont replace salt!!!!!!
-CREATE or replace FUNCTION hash_password_before_insert()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.password := crypt(NEW.password, gen_salt('md5'));
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-
-#create a trigger to hash password every time we insert a new password
-CREATE TRIGGER hash_password_trigger
-BEFORE INSERT ON user_info
-FOR EACH ROW
-EXECUTE FUNCTION hash_password_before_insert();
-
-#test query for password hashing
+#test query for inserting values
 INSERT INTO public.user_info (first_name, last_name, age, email, "password")
 VALUES ('fname', 'lname', 25, 'fname.lname@example.com', 'mypassword');
 
@@ -74,7 +54,7 @@ CREATE TABLE public."event" (
 	event_name varchar NULL,
 	event_creator varchar NULL,
 	event_description text NULL,
-	"location" varchar NULL,
+	"location" varchar NULL,g
 	event_day date NULL,
 	date_created timestamp NULL,
 	last_updated timestamp NULL,
