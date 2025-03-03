@@ -10,13 +10,9 @@ login_blueprint = Blueprint('login', __name__, template_folder='frontend/templat
 @login_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        data = request.get_json()  # Ensure it's JSON format
-        if not data:
-            flash("Invalid request format", "error")
-            return render_template("index.html")
-
-        email = data.get('email')
-        password = data.get('password')
+        
+        email = request.form.get('email')
+        password = request.form.get('password')
 
         user = User.query.filter_by(email=email).first()  # Fetch user by email
 
