@@ -17,6 +17,15 @@
             
             <!-- ✅ Login Form -->
             <form action="/login" method="POST" id ="loginform">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            <ul>
+                                {% for category, message in messages %}
+                                    <li class="{{ category }}">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
                 <input type="email" name="email" placeholder="Username (Email)">
                 <input type="password" name="password" placeholder="Password">
                 <button type="submit" class="login-btn">Login</button>

@@ -17,7 +17,7 @@ def login():
         user = User.query.filter_by(email=email).first()  # Fetch user by email
 
         if user and check_password_hash(user.password, password):  # Verify password
-            print("Login successful:", email)
+            flash("Login successful:", email)
             return redirect(url_for('home_page'))  # Redirect to home page
 
         flash("Invalid email or password", "error")  # Flash message for invalid login

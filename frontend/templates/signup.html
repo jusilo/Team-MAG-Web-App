@@ -8,6 +8,15 @@
 </head>
 <body>
     <div class="signup-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul>
+                        {% for category, message in messages %}
+                            <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
         <h1>Signup</h1>
         <form action="" method="POST" autocomplete="on">
             <input type="text" id="first_name" name="first_name" placeholder="First Name" required>

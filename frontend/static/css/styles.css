@@ -86,4 +86,8 @@ button{
     line-height: 2rem;  /* Vertically center the text based on the button's height */
     border: none;
 }
+.signup{
+    background-color: #28a745;
+    color: white;
+}
 
