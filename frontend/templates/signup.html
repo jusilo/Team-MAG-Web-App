@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_signup.css') }}">
+    <!-- Link to SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.all.min.js" defer></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>  
 </head>
 <body>
-    <div class="signup-container">
+    <!-- Flash messages container (hidden) -->
         {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    <ul>
-                        {% for category, message in messages %}
-                            <li class="{{ category }}">{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            {% endwith %}
+        {% if messages %}
+            <div id="flash-messages" style="display:none;">
+                {% for category, message in messages %}
+                    <div class="{{ category }}">{{ message }}</div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    <div class="signup-container">
         <h1>Signup</h1>
         <form action="" method="POST" autocomplete="on">
             <input type="text" id="first_name" name="first_name" placeholder="First Name" >
