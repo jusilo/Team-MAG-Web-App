@@ -16,12 +16,40 @@ def register():
         age = request.form['age']
         email = request.form['email']
         password = request.form['password']
+        confirm_password=request.form['confirm_password']
 
-        # Ensure the age is an integer (with a fallback to None if invalid)
+        #Firstname and Lastname Validation
+
+        if not first_name or not last_name:
+            flash('First name and last name are required.', 'danger')
+            return redirect(url_for('register.register'))
+
+
+        # Age Validation
         try:
             age = int(age)
+            if age < 18:
+                flash('You must be at least 18 years old to register.', 'danger')
+                return redirect(url_for('register.register'))
         except ValueError:
-            age = None  # You can handle this with a validation message if necessary
+            flash('Age must be a valid number.', 'danger')
+            return redirect(url_for('register.register'))
+        
+        # Email Validation
+        if not email or '@' not in email:
+            flash('Invalid email format.', 'danger')
+            return redirect(url_for('register.register'))
+        
+        # Password Validation: Ensure password have 8 characters
+        if len (password) < 8:
+            flash("Password must be at least 8 characters long.", 'danger')
+            return redirect(url_for('register.register'))
+        
+        # Confirm password validation
+        if password != confirm_password:
+            flash("Passwords do not match.", 'danger')
+            return redirect(url_for('register.register'))
+        
 
         # Hash the password using pbkdf2:sha256
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
