@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, session,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -34,8 +34,9 @@ def index():
 # Route for the home page
 @app.route('/home')
 def home_page():
-    return render_template('home.html')  # Will look in the 'frontend' folder for this file
-
+    if 'uid' not in session:  # Check if user is logged in
+        return redirect(url_for('login.login'))  # Redirect to login if not logged in
+    return render_template('home.html')
 
 
 # Run the application

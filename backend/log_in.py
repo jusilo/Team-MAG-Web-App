@@ -1,5 +1,5 @@
 #no js but works with post man
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import check_password_hash
 from app import db
 from .model import User  # Import the User model from the main app
@@ -24,3 +24,11 @@ def login():
 
     return render_template("index.html")  # Stay on login page if login fails
 
+#log out, no ui yet
+@login_blueprint.route('/logout')
+def logout():
+    session.pop('uid', None)  # Remove user ID from session
+    session.pop('email', None)  # Remove email from session 
+    print("Session Data:", session)  # Debugging: Print session data to console
+    flash("You have been logged out", "info")
+    return render_template("index.html")  # Redirect to login page
