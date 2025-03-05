@@ -1,5 +1,5 @@
 #no js but works with post man
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import check_password_hash
 from app import db
 from .model import User  # Import the User model from the main app
@@ -17,10 +17,20 @@ def login():
         user = User.query.filter_by(email=email).first()  # Fetch user by email
 
         if user and check_password_hash(user.password, password):  # Verify password
-            print("Login successful:", email)
+            session['uid'] = user.uid  # ✅ Store the actual ID value
+            session['email'] = user.email  # ✅ Store the actual email value
+            print("Session Data:", session)  # Debugging: Print session data to console
             return redirect(url_for('home_page'))  # Redirect to home page
 
         flash("Invalid email or password", "error")  # Flash message for invalid login
 
     return render_template("index.html")  # Stay on login page if login fails
 
+#log out, no ui yet
+@login_blueprint.route('/logout')
+def logout():
+    session.pop('uid', None)  # Remove user ID from session
+    session.pop('email', None)  # Remove email from session 
+    print("Session Data:", session)  # Debugging: Print session data to console
+    flash("You have been logged out", "info")
+    return render_template("index.html")  # Redirect to login page
