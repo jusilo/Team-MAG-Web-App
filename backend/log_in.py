@@ -17,9 +17,10 @@ def login():
         user = User.query.filter_by(email=email).first()  # Fetch user by email
 
         if user and check_password_hash(user.password, password):  # Verify password
-            session['uid'] = user.uid  # ✅ Store the actual ID value
-            session['email'] = user.email  # ✅ Store the actual email value
+            session['uid'] = user.uid  # Store the actual ID value
+            session['email'] = user.email  # Store the actual email value
             print("Session Data:", session)  # Debugging: Print session data to console
+            flash("Login successful!", email)
             return redirect(url_for('home_page'))  # Redirect to home page
 
         flash("Invalid email or password", "error")  # Flash message for invalid login
