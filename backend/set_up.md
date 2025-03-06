@@ -50,11 +50,11 @@ VALUES ('fname', 'lname', 25, 'fname.lname@example.com', 'mypassword');
 
 #create a second table 
 CREATE TABLE public."event" (
-	event_id varchar NOT NULL,
+	event_id SERIAL NOT NULL,
 	event_name varchar NULL,
 	event_creator varchar NULL,
 	event_description text NULL,
-	"location" varchar NULL,g
+	"location" varchar NULL,
 	event_day date NULL,
 	date_created timestamp NULL,
 	last_updated timestamp NULL,
