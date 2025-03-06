@@ -1,5 +1,5 @@
 // home.js
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
     const addEventBtn = document.querySelector(".add-event-btn");
 
     // Redirect to Add Event Page
@@ -66,6 +66,6 @@ document.getElementById("search").addEventListener("input", function () {
             noResultsMessage.remove();
         }
     }
-    });
+    });*/
 
 

@@ -1,5 +1,5 @@
 // add-event.js
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
     const eventForm = document.getElementById("eventForm");
 
     eventForm.addEventListener("submit", function (e) {
@@ -70,4 +70,4 @@ function uploadImages() {
 function removeImage(index) {
     const thumbnailsContainer = document.getElementById("imageThumbnails");
     thumbnailsContainer.children[index].remove();
-}
+}*/
