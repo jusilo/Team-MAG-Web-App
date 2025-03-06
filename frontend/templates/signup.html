@@ -5,25 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_signup.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.8/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div id="flash-messages" style="display:none;">
+                {% for category, message in messages %}
+                    <div class="{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
     <div class="signup-container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    <ul>
-                        {% for category, message in messages %}
-                            <li class="{{ category }}">{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            {% endwith %}
         <h1>Signup</h1>
         <form action="" method="POST" autocomplete="on">
             <input type="text" id="first_name" name="first_name" placeholder="First Name" >
             <input type="text" id="last_name" name="last_name" placeholder="Last Name" >
             <input type="text" id="age" name="age" placeholder="Age" >
             <input type="email" id="email" name="email" placeholder="Email" >
-            <input type="password" ed= "password" name="password" placeholder="Password" >
+            <input type="password" name="password" placeholder="Password" >
             <input type="password" name="confirm_password" placeholder="Confirm Password" >
         
             <select name="gender" required autocomplete="off">
@@ -37,5 +39,8 @@
         
         <p>Already have an account? <a href="{{ url_for('index') }}" class="back-link">Login here</a></p>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

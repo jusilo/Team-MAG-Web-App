@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
     const images = ["image1.jpg", "image2.jpg", "image3.jpg"];
     let currentIndex = 0;
     const mainImage = document.getElementById("mainImage");
@@ -61,4 +61,4 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("editEvent").addEventListener("click", function () {
         alert("Edit event functionality coming soon!");
     });
-});
+});*/

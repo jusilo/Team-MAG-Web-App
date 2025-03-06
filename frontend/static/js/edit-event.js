@@ -1,5 +1,5 @@
 // edit-event.js
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
     const eventId = new URLSearchParams(window.location.search).get("id"); // Get event ID from URL
     const events = JSON.parse(localStorage.getItem("events")) || [];
     const event = events.find(e => e.id == eventId); // Find the event by ID
@@ -26,4 +26,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function goBack() {
     window.location.href = "home.html";
-}
+}*/
