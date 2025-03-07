@@ -7,6 +7,7 @@ from .model import User  # Import the User model from the main app
 # Define the Blueprint
 login_blueprint = Blueprint('login', __name__, template_folder='frontend/templates')
 
+
 @login_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -25,7 +26,7 @@ def login():
 
             flash("Login successful:", email)
 
-            return redirect(url_for('home_page'))  # Redirect to home page
+            return redirect(url_for('events.home_page'))  # Redirect to home page
 
         flash("Invalid email or password", "error")  # Flash message for invalid login
 

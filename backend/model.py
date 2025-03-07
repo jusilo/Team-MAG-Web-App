@@ -1,4 +1,5 @@
 from app import db
+from sqlalchemy.dialects.postgresql import ARRAY
 
 class User(db.Model):
     __tablename__ = 'user_info'
@@ -13,17 +14,18 @@ class User(db.Model):
         return f'<User {self.email}>'
 
 class UserInfo(db.Model):
-    __tablename__ = 'event'
-    event_id = db.Column(db.Integer, primary_key=True)
-    event_name = db.Column(db.String(100), nullable=False)
-    event_creator = db.Column(db.String(100), nullable=False)
-    event_description = db.Column(db.String(10000), nullable=False)
-    event_location = db.Column(db.String(10000), nullable=False)
-    date_created = db.Column(db.DateTime, nullable=True)  # timestamp without time zone
-    last_updated = db.Column(db.DateTime, nullable=True)  # timestamp without time zone
-    event_attendees = db.Column(db.ARRAY(db.Integer), nullable=True)  # integer[]
-    uid = db.Column(db.Integer, nullable=False)  # Foreign key reference (if needed)
+        __tablename__ = 'event'
+        event_id = db.Column(db.Integer, primary_key=True)
+        event_name = db.Column(db.String(100), nullable=True)
+        event_creator = db.Column(db.String(100), nullable=True)
+        event_description = db.Column(db.Text, nullable=True)
+        location = db.Column(db.String(100), nullable=True)
+        event_day = db.Column(db.Date, nullable=True)
+        date_created = db.Column(db.DateTime, nullable=True)
+        last_updated = db.Column(db.DateTime, nullable=True)
+        event_attendees = db.Column(ARRAY(db.Integer), nullable=True)
+        uid = db.Column(db.Integer, db.ForeignKey('user_info.uid'), nullable=False)
 
-    def __repr__(self):
-        return f"<Event {self.event_name}>"
+        def __repr__(self):
+            return f"<Event {self.event_name}>"
 

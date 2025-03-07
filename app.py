@@ -26,18 +26,14 @@ app.register_blueprint(register_blueprint)
 from backend.log_in import login_blueprint
 app.register_blueprint(login_blueprint)
 
+# Register the events blueprint from fetchAll_event.py
+from backend.fetchAll_event import events_blueprint
+app.register_blueprint(events_blueprint)
+
 # Route for the home page (index)
 @app.route('/')
 def index():
     return render_template('index.html')  # Will look in the 'frontend' folder for this file
-
-# Route for the home page
-@app.route('/home')
-def home_page():
-    if 'uid' not in session:  # Check if user is logged in
-        return redirect(url_for('login.login'))  # Redirect to login if not logged in
-    return render_template('home.html')
-
 
 # Run the application
 if __name__ == '__main__':
