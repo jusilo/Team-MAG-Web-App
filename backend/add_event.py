@@ -41,9 +41,9 @@ def addevent():
             db.session.commit()
         except Exception as e:
             db.session.rollback()
-            print("Error:", e)
+            flash("Error:", e)
 
-        print("new event created")
+        flash("new event created", "sucess")
    
     return redirect(url_for('addevent'))
 
