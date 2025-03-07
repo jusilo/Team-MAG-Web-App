@@ -1,4 +1,58 @@
 // home.js
+
+window.onload = function() {
+    const messages = document.getElementById('flash-messages');
+    if (messages) {
+        const messageList = messages.children;
+        for (let i = 0; i < messageList.length; i++) {
+            const message = messageList[i].innerHTML;
+            const category = messageList[i].classList;
+
+            // Customize alert based on category (success, danger, etc.)
+            if (category.contains('success')) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: message,
+                    timer: 3000,
+                    showConfirmButton: true,
+                });
+            } else if (category.contains('danger')) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: message,
+                    timer: 3000,
+                    showConfirmButton: true,
+                });
+            } else if (category.contains('info')) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Information',
+                    text: message,
+                    timer: 3000,
+                    showConfirmButton: true,
+                });
+            } else if (category.contains('warning')) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: message,
+                    timer: 3000,
+                    showConfirmButton: true,
+                });
+            } else {
+                Swal.fire({
+                    icon: 'question',
+                    title: 'Message',
+                    text: message,
+                    timer: 3000,
+                    showConfirmButton: true,
+                });
+            }
+        }
+    }
+};
 /*document.addEventListener("DOMContentLoaded", function () {
     const addEventBtn = document.querySelector(".add-event-btn");
 
