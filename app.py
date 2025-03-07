@@ -26,6 +26,10 @@ app.register_blueprint(register_blueprint)
 from backend.log_in import login_blueprint
 app.register_blueprint(login_blueprint)
 
+# Register the blueprint for log in
+from backend.add_event import addevent_blueprint
+app.register_blueprint(addevent_blueprint)
+
 # Route for the home page (index)
 @app.route('/')
 def index():
@@ -35,10 +39,17 @@ def index():
 @app.route('/home')
 def home_page():
     if 'uid' not in session:  # Check if user is logged in
-        return redirect(url_for('login.login'))  # Redirect to login if not logged in
+        return redirect(url_for('index'))  # Redirect to login if not logged in
     return render_template('home.html')
 
+# Route for the home page (add event)
+@app.route('/add-event')
+def addevent():
+    return render_template('add-event.html')  # Will look in the 'frontend' folder for this file
 
-# Run the application
+
+# debug
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
+from flask import session
+
