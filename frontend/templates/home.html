@@ -39,6 +39,15 @@
                           <p><strong>Location:</strong> {{ event.event_location }}</p>
                           <p><strong>Date Created:</strong> {{ event.date_created.strftime('%Y-%m-%d %H:%M') }}</p>
                           <p><strong>Attendees:</strong> {{ event.event_attendees }}</p>
+
+                          <!-- Conditional Buttons -->
+                        {% if event.uid == session['uid'] %}
+                        <!-- Show "Cancel Event" button to the creator -->
+                        <button class="cancel-event-btn">Cancel Event</button>
+                     {% else %}
+                        <!-- Show "Join Event" button to other users -->
+                        <button class="join-event-btn">Join Event</button>
+                    {% endif %}
                       </div>
                     {% endfor %}
                 </div>
