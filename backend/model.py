@@ -13,6 +13,7 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.email}>'
 
+
 class Event(db.Model):
     __tablename__ = 'event'
     event_id = db.Column(db.Integer, primary_key=True)
@@ -26,6 +27,6 @@ class Event(db.Model):
     event_attendees = db.Column(ARRAY(db.Integer), nullable=True)
     uid = db.Column(db.Integer, db.ForeignKey('user_info.uid'), nullable=False)
 
-    def __repr__(self):
-        return f"<Event {self.event_name}>"
+        def __repr__(self):
+            return f"<Event {self.event_name}>"
 

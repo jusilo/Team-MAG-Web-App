@@ -26,6 +26,7 @@ app.register_blueprint(register_blueprint)
 from backend.log_in import login_blueprint
 app.register_blueprint(login_blueprint)
 
+
 # Register the blueprint for log in
 from backend.add_event import addevent_blueprint
 app.register_blueprint(addevent_blueprint)
@@ -34,6 +35,7 @@ app.register_blueprint(addevent_blueprint)
 @app.route('/')
 def index():
     return render_template('index.html')  # Will look in the 'frontend' folder for this file
+
 
 # Route for the home page
 @app.route('/home')
