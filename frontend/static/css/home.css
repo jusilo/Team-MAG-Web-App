@@ -1,43 +1,70 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif; /* Using Roboto font from Google Fonts */
     margin: 0;
     padding: 20px;
-    background-color: #f4f4f4;
+    background: url('/static/Files/background_all.jpg') no-repeat center center/cover;
+    color: #333; /* Default text color for better contrast */
+    line-height: 1.6; /* Improved line height for readability */
+    -webkit-font-smoothing: antialiased; /* For smoother font rendering on macOS/iOS */
+    -moz-osx-font-smoothing: grayscale; /* For smoother font rendering on Firefox macOS */
 }
 
 .container {
-    width: 90%;
+    width: 95%; /* Slightly wider container */
     max-width: 1200px;
-    margin: auto;
-    text-align: center;
+    margin: 0 auto; /*  Margin auto for horizontal centering, 0 for top/bottom */
+    text-align: center; /* Consider if you *really* need text-align: center on the container level. Often better to control text alignment within specific sections. */
 }
 
-/* Header */
+/* Header with Transparent Glass Effect */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Slightly more margin below header */
+    padding: 15px 20px; /* Add vertical and horizontal padding */
+
+    /* Glass Effect Changes Below */
+    background-color: rgba(255, 255, 255, 0.6); /* White background with 60% opacity (adjust as needed) */
+    backdrop-filter: blur(10px); /* Adjust blur amount as needed */
+    -webkit-backdrop-filter: blur(10px); /* For Safari & older browsers */
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Subtle shadow (you can keep this or adjust) */
+    border-radius: 8px; /* Optional: Rounded corners for header (keep if you like rounded corners) */
+    max-width: 4000px;
 }
 
-header h2 {
-    font-size: 24px;
+header h1 {
+    font-size: 28px; /* Adjust size as needed */
+    margin: 0;
+    color: #333; /* Or your brand color */
+    font-weight: 700; /* Bold font weight for title */
 }
 
 /* Buttons */
 button {
-    padding: 10px 15px;
+    padding: 12px 20px; /* Slightly larger padding */
     background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
+    border-radius: 7px; /* Slightly increased border-radius */
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out; /* Add transform transition for active state */
+    font-weight: 500; /* Slightly bolder font weight */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 button:hover {
     background-color: #0056b3;
+}
+button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3); /* Focus ring using box-shadow */
+}
+button:active {
+    transform: scale(0.98); /* Slightly scale down on click */
+    background-color: #004280; /* Even darker active background */
 }
 
 .primary-btn {
@@ -55,38 +82,71 @@ button:hover {
 .danger-btn:hover {
     background-color: darkred;
 }
+.join-event-btn {
+    background-color: #00c851; /* Example: Green for "Join" */
+}
+.join-event-btn:hover {
+    background-color: #00a342;
+}
+
+.cancel-event-btn {
+    background-color: #dc3545; /* Example: Red for "Cancel" */
+}
+.cancel-event-btn:hover {
+    background-color: #c82333;
+}
 
 /* Input Fields */
 input[type="text"], input[type="date"], textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 12px 15px; /* Slightly more padding */
+    border: 1px solid #ddd; /* Lighter border */
+    border-radius: 7px; /* Consistent border-radius */
     font-size: 16px;
     width: 100%;
+    background-color: #fff; /* White background for inputs */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06); /* Subtle inset shadow */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.06); /* Focus ring and inset shadow */
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resizing of textareas */
+    min-height: 100px; /* Minimum height for textareas */
 }
 
 /* Event Grid */
 .event-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px; /* Slightly increased gap */
+    padding: 25px; /* Slightly increased padding */
+    /* Optional: Background color for grid area if desired: */
+    /* background-color: #fff;
+    border-radius: 10px; */
 }
 
-/* Event Cards */
+/* Event Cards with Transparent Glass Effect */
 .event-card {
     max-width: 100%;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    /* Glass Effect Additions Below */
+    background-color: rgba(255, 255, 255, 0.7); /* White background with 70% opacity (adjust as needed) */
+    backdrop-filter: blur(8px); /* Adjust blur amount as needed */
+    -webkit-backdrop-filter: blur(8px); /* For Safari & older browsers */
+
+    border-radius: 12px; /* More rounded corners (keep as is or adjust) */
+    padding: 20px; /* Increased padding (keep as is or adjust) */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer, more modern shadow (keep or adjust) */
     transition: transform 0.3s ease-in-out;
+    border: 1px solid #eee; /* Very light border (keep or adjust) */
 }
 
 .event-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px); /* Slightly lift card on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /*  Slightly stronger shadow on hover */
 }
 
 .event-card img {
@@ -95,30 +155,84 @@ input[type="text"], input[type="date"], textarea {
     object-fit: cover;
     border-radius: 5px;
 }
+.event-card h3 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 600;
+    line-height: 1.3; /* Tighter line height for headings */
+    text-align: left; /* Left-align the heading */
+}
+
+.event-card p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 8px; /* Spacing between paragraphs */
+    text-align: left; /* Left-align paragraphs */
+}
+
+.event-card strong {
+    font-weight: 600; /* Bolder "strong" text */
+    color: #444; /* Slightly darker strong text */
+}
+
+.event-card ul {
+    list-style: none; /* Remove default bullet points */
+    padding-left: 0;
+    margin-top: 5px;
+    text-align: left; /* Left-align lists */
+}
+
+.event-card li {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px; /* Spacing between list items */
+}
+
+/* If you add images later: */
+/* .event-card img {
+    width: 100%;
+    height: 200px;  Adjust height
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;  Rounded corners on top only, matching card
+    margin-bottom: 15px;  Spacing between image and text
+} */
+
+/* Style buttons *within* the event card */
+.event-card button {
+    margin-top: 15px; /* Space above buttons in card */
+    width: auto; /* Adjust button width if needed, 'auto' often good in cards */
+    display: block; /* Make buttons stack vertically if needed */
+    margin-left: auto; /* Right-align buttons if desired */
+    margin-right: auto; /* Right-align buttons if desired */
+}
 
 /* Search Bar Container */
 .search-container {
     position: relative;
     width: 300px;
     max-width: 100%;
+    padding-right: 50px;
 }
 
 /* Input Field with Space for Icon */
 .search-container input {
     width: 100%;
     padding: 12px 40px 12px 15px; /* Extra space on the right for the icon */
-    border: 1px solid #ccc;
-    border-radius: 25px;
+    border: 1px solid #ddd; /* Lighter border */
+    border-radius: 8px; /* Slightly less rounded */
     font-size: 16px;
     outline: none;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06); /* Inset shadow like other inputs */
+    background-color: #fff; /* White background */
 }
 
-/* Focus Effect */
 .search-container input:focus {
     border-color: #007bff;
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.06); /* Consistent focus style */
 }
 
 /* Search Icon */
@@ -127,20 +241,72 @@ input[type="text"], input[type="date"], textarea {
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #555;
+    color: #777; /* Slightly darker icon color */
     font-size: 18px;
     cursor: pointer;
+    opacity: 0.7; /* Slightly reduce opacity for a softer look */
+}
+.search-container .search-icon:hover {
+    opacity: 1; /* Full opacity on hover */
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 992px) { /* Example: Tablet and smaller */
+    .container {
+        width: 98%; /* Wider container on smaller screens */
+        padding-left: 15px; /* Reduce horizontal padding */
+        padding-right: 15px;
+    }
+    header {
+        padding-left: 15px; /* Match header padding to container */
+        padding-right: 15px;
+        flex-direction: column; /* Stack header elements vertically on smaller screens */
+        align-items: stretch; /* Full width header elements */
+        text-align: center; /* Center text within header on smaller screens */
+    }
+    .header-branding {
+        margin-bottom: 15px; /* Space between branding and actions in stacked header */
+    }
+    .header-actions {
+        flex-direction: column; /* Stack actions vertically */
+        width: 100%; /* Full width actions */
+        gap: 10px; /* Reduced gap between stacked actions */
+    }
+    .search-container {
+        width: 50%; /* Full width search bar on smaller screens */
+    }
     .event-grid {
-        grid-template-columns: repeat(2, 1fr);
+        padding: 15px; /* Reduced grid padding */
+        gap: 20px; /* Keep grid gap same or adjust */
+    }
+    .event-card {
+        padding: 15px; /* Reduced card padding */
     }
 }
 
-@media (max-width: 480px) {
+
+@media (max-width: 768px) {
     .event-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); /* Keep 2 columns on smaller tablets and larger phones */
+    }
+}
+
+@media (max-width: 576px) { /* Example: Smaller phones */
+    body {
+        padding: 10px; /* Reduced body padding on small phones */
+    }
+    .event-grid {
+        grid-template-columns: 1fr; /* Single column on small phones */
+        gap: 15px; /* Further reduce grid gap */
+    }
+    .event-card {
+        padding: 12px; /* Further reduce card padding */
+    }
+    /* You might also want to reduce font sizes in event cards for very small screens: */
+    .event-card h3 {
+        font-size: 18px;
+    }
+    .event-card p, .event-card li {
+        font-size: 14px;
     }
 }

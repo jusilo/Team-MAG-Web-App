@@ -1,44 +1,53 @@
+/* styles_signup.css */
 body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background: url('/static/Files/background_all.jpg') no-repeat center center/cover;
     margin: 0;
 }
 
+/* Transparent Glass Effect */
 .signup-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 320px; /* Adjusted width */
-    max-width: 100%; /* Prevents overflow */
+    width: 320px;
+    max-width: 100%;
+    backdrop-filter: blur(10px); /* Blurred glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Keep the text and input fields readable */
 .signup-container h1 {
     margin-bottom: 15px;
     font-size: 24px;
     font-weight: bold;
+    color: white; /* Adjust for better visibility */
 }
 
-.signup-container input {
-    width: calc(100% - 20px); /* Fixes right-side overflow */
+.signup-container input,
+.signup-container select {
+    width: 100%;
     padding: 12px;
     margin: 8px 0;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     font-size: 14px;
-    display: block; /* Ensures full width inside container */
-    box-sizing: border-box; /* Prevents overflowing */
+    display: block;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent input fields */
+    color: black; /* Adjust text color */
 }
 
 .signup-btn {
     width: 100%;
     padding: 12px;
-    background-color: #007BFF;
+    background-color: rgba(0, 123, 255, 0.8);
     color: white;
     border: none;
     border-radius: 8px;
@@ -49,42 +58,23 @@ body {
 }
 
 .signup-btn:hover {
-    background-color: #0056b3;
+    background-color: rgba(0, 86, 179, 0.9);
+}
+
+p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: white;
 }
 
 .back-link {
     display: block;
     margin-top: 15px;
     text-decoration: none;
-    color: #007BFF;
+    color: white;
     font-size: 14px;
 }
 
 .back-link:hover {
     text-decoration: underline;
-}
-
-p {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #555;
-}
-.gender-container {
-    text-align: left;
-    margin: 10px 0;
-    font-size: 14px;
-}
-
-.gender-container label {
-    margin-right: 10px;
-}
-select {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-    background-color: white;
-    cursor: pointer;
 }

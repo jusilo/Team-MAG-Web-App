@@ -53,6 +53,8 @@ window.onload = function() {
         }
     }
 };
+
+
 /*document.addEventListener("DOMContentLoaded", function () {
     const addEventBtn = document.querySelector(".add-event-btn");
 
