@@ -38,7 +38,12 @@
                           <p><strong>Description:</strong> {{ event.event_description }}</p>
                           <p><strong>Location:</strong> {{ event.event_location }}</p>
                           <p><strong>Date Created:</strong> {{ event.date_created.strftime('%Y-%m-%d %H:%M') }}</p>
-                          <p><strong>Attendees:</strong> {{ event.event_attendees }}</p>
+                          <p><strong>Event Attendees:</strong> </p>
+                          <ul>
+                            {% for attendee in attendees %}
+                                <li>{{ attendee.first_name }} {{ attendee.last_name }}</li>
+                            {% endfor %}
+                          </ul>
 
                           <!-- Conditional Buttons -->
                         {% if event.uid == session['uid'] %}
