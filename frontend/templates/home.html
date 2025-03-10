@@ -23,8 +23,12 @@
         <header>
             <a href="{{ url_for('addevent.addevent') }}"><button class="add-event-btn" >Add Event</button></a>
             <div class="search-container">
-                <input type="text" id="search" placeholder="Search events...">
-                <i class="search-icon fas fa-search"></i> <!-- FontAwesome icon -->
+                <form action="/search" method="POST">
+                    <input  type="text" id="search" name = "search" placeholder="Search events...">
+                    <i class="search-icon fas fa-search"></i> <!-- FontAwesome icon -->
+                </form>
+                
+                
             </div>
         </header>
 
