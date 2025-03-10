@@ -7,24 +7,36 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/edit-event.css') }}">
     <script defer src="{{ url_for('static', filename='js/edit-event.js') }}"></script>
 </head>
-<body>
+<body>s
     <div class="container">
         <header>
             <h2>Edit Event</h2>
-            <button onclick="goBack()">Go Back</button>
+            <a href="{{ url_for('events.home_page') }}"><button class="back-btn">Go Back</button></a>
         </header>
         
-        <div class="container">
+        <form method="POST" action="{{ url_for('edit-events.editevent', event_id=event.event_id) }}">
             <!-- Left Section - Event Details -->
             <div class="event-details">
-                <div class="image-container">IMAGE ADJUSTABLE IMAGE</div>
-                <div class="description-title">DESCRIPTION</div>
-                <div class="description-box">
-                    DESCRIPTIONDESCRIPTIONDESCRIPTIONDESCRIPTIONDESCRIPTIONDESCRIPTION
+                <div class="image-container">
+                    <!-- Add image logic here if necessary -->
+                    <img src="{{ url_for('static', filename='Files/image1.jpg') }}" alt="Event Image" width="100%">
                 </div>
-                <div class="button-container">
-                    <button>JOIN</button>
-                    <button>EDIT</button>
+                <div class="description-title">Description</div>
+                <div class="description-box">
+                    <!-- Event Name Field -->
+                    <input type="text" name="event_name" value="{{ event.event_name }}" required>
+
+                    <!-- Event Description Field -->
+                    <textarea name="event_description" required>{{ event.event_description }}</textarea>
+
+                    <!-- Event Location Field -->
+                    <input type="text" name="location" value="{{ event.location }}" required>
+
+                    <!-- Event Day Field -->
+                    <input type="date" name="event_day" value="{{ event.event_day.strftime('%Y-%m-%d') }}" required>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="edit-btn">Save Changes</button>
                 </div>
             </div>
         
