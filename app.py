@@ -35,6 +35,10 @@ app.register_blueprint(addevent_blueprint)
 from backend.fetchAll_event import events_blueprint
 app.register_blueprint(events_blueprint)
 
+# Register the events blueprint from search.py
+from backend.search import search_blueprint
+app.register_blueprint(search_blueprint)
+
 # Route for the home page (index)
 @app.route('/')
 def index():

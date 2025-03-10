@@ -23,8 +23,12 @@
         <header>
             <a href="{{ url_for('addevent.addevent') }}"><button class="add-event-btn" >Add Event</button></a>
             <div class="search-container">
-                <input type="text" id="search" placeholder="Search events...">
-                <i class="search-icon fas fa-search"></i> <!-- FontAwesome icon -->
+                <form action="/search" method="POST">
+                    <input  type="text" id="search" name = "search" placeholder="Search events...">
+                    <i class="search-icon fas fa-search"></i> <!-- FontAwesome icon -->
+                </form>
+                
+                
             </div>
         </header>
 
@@ -38,7 +42,12 @@
                           <p><strong>Description:</strong> {{ event.event_description }}</p>
                           <p><strong>Location:</strong> {{ event.event_location }}</p>
                           <p><strong>Date Created:</strong> {{ event.date_created.strftime('%Y-%m-%d %H:%M') }}</p>
-                          <p><strong>Attendees:</strong> {{ event.event_attendees }}</p>
+                          <p><strong>Event Attendees:</strong> </p>
+                          <ul>
+                            {% for attendee in attendees %}
+                                <li>{{ attendee.first_name }} {{ attendee.last_name }}</li>
+                            {% endfor %}
+                          </ul>
 
                           <!-- Conditional Buttons -->
                         {% if event.uid == session['uid'] %}

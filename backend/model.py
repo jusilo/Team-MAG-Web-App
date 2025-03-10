@@ -30,3 +30,6 @@ class Event(db.Model):
         def __repr__(self):
             return f"<Event {self.event_name}>"
 
+# Relationship to fetch user objects based on event_attendees IDs
+        def get_attendee_users(self):
+                return User.query.filter(User.uid.in_(self.event_attendees)).all()
