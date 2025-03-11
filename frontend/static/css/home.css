@@ -136,7 +136,8 @@ textarea {
     background-color: rgba(255, 255, 255, 0.7); /* White background with 70% opacity (adjust as needed) */
     backdrop-filter: blur(8px); /* Adjust blur amount as needed */
     -webkit-backdrop-filter: blur(8px); /* For Safari & older browsers */
-
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 12px; /* More rounded corners (keep as is or adjust) */
     padding: 20px; /* Increased padding (keep as is or adjust) */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer, more modern shadow (keep or adjust) */
