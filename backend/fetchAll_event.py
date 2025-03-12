@@ -11,12 +11,12 @@ def home_page():
     
     # Fetch all events from the database (no pagination)
     events = Event.query.all()  # Fetch all records from the event table
-    #to print names instead of UID
+      #Collect attendees for each event in a dictionary
+    attendees_map = {}
     for event in events:
-        attendees = event.get_attendee_users()  
-    
+        attendees_map[event.event_id] = event.get_attendee_users()
 
-    # Render the template and pass the events to it
-    return render_template('home.html', events=events, attendees=attendees)
+    #Pass the events and the attendees map to the template
+    return render_template('home.html', events=events, attendees_map=attendees_map)
 
 
