@@ -64,3 +64,11 @@ CREATE TABLE public."event" (
 	constraint event_creator_fk foreign key (uid) references public."user_info"(uid)
 	
 );
+
+CREATE TABLE public.event_album (
+    album_id serial4 NOT NULL,
+    event_id int NOT NULL,
+    event_images bytea[] NULL, 
+    CONSTRAINT event_album_pk PRIMARY KEY (album_id),
+    CONSTRAINT event_id_creator FOREIGN KEY (event_id) REFERENCES public."event"(event_id)
+);

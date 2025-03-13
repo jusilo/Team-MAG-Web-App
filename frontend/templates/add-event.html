@@ -25,13 +25,12 @@
                 <div class="image-placeholder">
                     <img id="profileImage" src="{{ url_for('static', filename='Files/team_mang.png') }}" alt="Adjustable Image">
                 </div>
-                <form id="eventForm" action="/addevent" method="POST">
+                <form id="eventForm" action="/addevent" method="POST" enctype="multipart/form-data">
                     <input type="text" id="eventName" name="eventName"placeholder="EVENT NAME" required>
                     <input type="text" id="eventPlace" name="eventPlace" placeholder="PLACE" required>
                     <input type="date" id="eventDate" name="eventDate" required>
                     <textarea id="eventDescription" name="eventDescription" placeholder="DESCRIPTION" required></textarea>
-                    <button type="submit">CREATE</button>
-                </form>
+                    
             </div>
         </div>
 
@@ -43,8 +42,9 @@
             <div class="image-thumbnails" id="imageThumbnails">
                 <!-- Thumbnails will be dynamically added here -->
             </div>
-            <input type="file" id="imageUpload" accept="image/*" multiple>
-            <button onclick="uploadImages()">UPLOAD</button>
+            <input type="file" id="imageUpload" name="imagefiles" accept="image/*" multiple>
+            <button type="submit">CREATE</button>
+                </form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>

@@ -1,5 +1,5 @@
 from app import db
-from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY, BYTEA
 from datetime import datetime
 
 class User(db.Model):
@@ -51,3 +51,10 @@ class Event(db.Model):
             return datetime.strptime(event_day_str, '%Y-%m-%d').date()  # Adjust the format if needed
         except ValueError:
             raise ValueError("Invalid date format. Please use YYYY-MM-DD.")
+class Event_album(db.Model):
+    __tablename__ = 'event_album'
+
+    album_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'), nullable=False)
+    event_images = db.Column(ARRAY(BYTEA), nullable=True)  # Stores multiple images as BYTEA[]
+
