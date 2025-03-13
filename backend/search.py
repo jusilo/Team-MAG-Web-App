@@ -14,11 +14,11 @@ def search():
     print(keywords)
     events = Event.query.filter(Event.event_name.like(f"%{keywords}%")).all()  # Fetch all records from the event table
     #to print names instead of UID
-    attendees = []  
+    attendees_map = []  
     for event in events:
         print ("route testing")
-        attendees = event.get_attendee_users()  
-        print(f"Attendees for {event.event_name}: {attendees}")
+        attendees_map = event.get_attendee_users()  
+        print(f"Attendees for {event.event_name}: {attendees_map}")
 
     # Render the template and pass the events to it
-    return render_template('home.html', events=events, attendees=attendees)
+    return render_template('home.html', events=events, attendees_map=attendees_map)
