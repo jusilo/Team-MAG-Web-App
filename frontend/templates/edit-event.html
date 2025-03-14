@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/edit-event.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -14,7 +15,7 @@
         </header>
         
         <!-- Form for editing the event -->
-        <form method="POST" action="{{ url_for('edit-events.editevent', event_id=event.event_id) }}">
+        <form id="editEventForm" method="POST" action="{{ url_for('edit-events.editevent', event_id=event.event_id) }}">
             <!-- Hidden field to track action (either 'save' or 'cancel') -->
             <input type="hidden" name="action" id="action" value="save">
             
@@ -38,21 +39,16 @@
                     <!-- Event Day Field -->
                     <input type="date" name="event_day" value="{{ event.event_day.strftime('%Y-%m-%d') }}" required>
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="edit-btn" onclick="setAction('save')">Save Changes</button>
+                    <!-- Save Button -->
+                    <button type="button" class="edit-btn" id="saveBtn">Save Changes</button>
                     
                     <!-- Cancel Button -->
-                    <button type="submit" class="cancel-btn" onclick="setAction('cancel')">Cancel</button>
+                    <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
                 </div>
             </div>
         </form>
     </div>
-
-    <!-- JavaScript to handle the action change based on the button clicked -->
-    <script>
-        function setAction(action) {
-            document.getElementById('action').value = action;
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+    <script src="{{ url_for('static', filename='js/edit-event.js') }}"></script>
 </body>
 </html>
