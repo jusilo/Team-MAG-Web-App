@@ -121,9 +121,9 @@ textarea {
 /* Event Grid */
 .event-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px; /* Slightly increased gap */
-    padding: 25px; /* Slightly increased padding */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust 250px as needed */
+    gap: 25px;
+    padding: 25px;
     /* Optional: Background color for grid area if desired: */
     /* background-color: #fff;
     border-radius: 10px; */
@@ -133,21 +133,21 @@ textarea {
 .event-card {
     max-width: 100%;
     /* Glass Effect Additions Below */
-    background-color: rgba(255, 255, 255, 0.7); /* White background with 70% opacity (adjust as needed) */
-    backdrop-filter: blur(8px); /* Adjust blur amount as needed */
-    -webkit-backdrop-filter: blur(8px); /* For Safari & older browsers */
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     margin-top: 10px;
     margin-bottom: 10px;
-    border-radius: 12px; /* More rounded corners (keep as is or adjust) */
-    padding: 20px; /* Increased padding (keep as is or adjust) */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer, more modern shadow (keep or adjust) */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease-in-out;
-    border: 1px solid #eee; /* Very light border (keep or adjust) */
+    border: 1px solid #eee;
 }
 
 .event-card:hover {
-    transform: translateY(-5px); /* Slightly lift card on hover */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /*  Slightly stronger shadow on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .event-card img {
@@ -162,21 +162,22 @@ textarea {
     margin-bottom: 10px;
     color: #333;
     font-weight: 600;
-    line-height: 1.3; /* Tighter line height for headings */
-    text-align: left; /* Left-align the heading */
+    line-height: 1.3;
+    text-align: left;
 }
+
 
 .event-card p {
     font-size: 15px;
     color: #555;
     line-height: 1.5;
-    margin-bottom: 8px; /* Spacing between paragraphs */
-    text-align: left; /* Left-align paragraphs */
+    margin-bottom: 8px;
+    text-align: left;
 }
 
 .event-card strong {
-    font-weight: 600; /* Bolder "strong" text */
-    color: #444; /* Slightly darker strong text */
+    font-weight: 600;
+    color: #444;
 }
 
 .event-card ul {

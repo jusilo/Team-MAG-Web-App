@@ -10,90 +10,125 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background: url('/static/Files/background_all.jpg') no-repeat center center/cover;
+    overflow: hidden; /* Prevents scrollbars if content overflows */
 }
 
 .container {
     display: flex;
     gap: 30px;
+    position: relative; /* Needed for absolute positioning of glass effect */
+}
+
+/* Glass Effect Overlay (Behind the Content) */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit; /* Inherits the body's background */
+    filter: blur(20px); /* Adjust blur amount for desired glass effect */
+    z-index: -1; /* Place behind the content */
 }
 
 /* Event Form Section */
 .event-form-container {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Slightly more rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     width: 300px;
+    backdrop-filter: blur(10px); /* Adds the glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: add a subtle border */
 }
 
 .image-placeholder img {
     width: 100%;
     height: auto;
-    border-radius: 5px;
+    border-radius: 8px; /* Slightly more rounded corners */
+    object-fit: cover; /* Ensures image fills the space */
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px; /* Slightly more spacing */
 }
 
 input, textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px; /* Slightly larger padding */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent border */
+    border-radius: 6px; /* Slightly more rounded corners */
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent input background */
+    color: #333; /* Darker text for contrast */
 }
 
 textarea {
-    resize: none;
-    height: 80px;
+    resize: vertical; /* Allow vertical resizing */
+    height: 100px; /* Slightly taller textarea */
 }
 
 button {
-    padding: 10px;
-    background: black;
+    padding: 12px 20px; /* More padding for a larger button */
+    background: rgba(0, 0, 0, 0.7); /* Slightly transparent black */
     color: white;
     border: none;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background 0.3s ease; /* Smooth hover transition */
 }
 
 button:hover {
-    background: gray;
+    background: rgba(0, 0, 0, 0.9); /* Darker hover effect */
 }
 
 /* Image Upload Section */
 .image-upload-section {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.2);
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 400px;
     text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .main-image-preview img {
     width: 100%;
     height: auto;
-    border-radius: 5px;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
 .image-thumbnails {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 15px; /* More spacing */
 }
 
 .image-thumbnails img {
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent border */
+    transition: transform 0.2s ease; /* Smooth hover effect */
+}
+
+.image-thumbnails img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
 }
 
 input[type="file"] {
-    margin-top: 10px;
+    margin-top: 15px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #333;
 }

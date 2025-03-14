@@ -1,123 +1,186 @@
 /* General Container */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/static/Files/background_all.jpg') no-repeat center center/cover;
+    overflow: hidden; /* Prevents scrollbars if content overflows */
+}
 .container {
     width: 80%;
-    margin: 0 auto;
+    max-width: 1200px; /* Added max-width for larger screens */
+    margin: 20px auto; /* Added top/bottom margin for spacing */
     padding: 20px;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    background: rgba(255, 255, 255, 0.2); /* Glass effect */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Left Section - Event Details */
 .event-details {
-    width: 45%;
-    border: 2px solid black;
+    width: 48%; /* Slightly adjusted width */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Lighter border */
+}
+.event-description {
+    padding: 15px;
+    text-align: left;
+    font-size: 15px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #333;
+    min-height: 100px; /* Added minimum height */
+    resize: vertical; /* Allow vertical resizing */
 }
 
 /* Image Placeholder */
 .image-container {
     width: 100%;
-    height: 150px;
-    background-color: #eee;
+    height: 200px; /* Increased height */
+    background-color: rgba(255, 255, 255, 0.1); /* Glass effect */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-weight: bold;
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.5); /* Dashed border for placeholder */
+    color: #888; /* Lighter text color */
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 /* Description Section */
 .description-title {
-    border: 2px solid purple;
     display: inline-block;
-    padding: 5px;
+    padding: 8px 12px;
     font-weight: bold;
     margin-bottom: 10px;
+    border-radius: 5px;
+    background: rgba(128, 0, 128, 0.2); /* Purple with transparency */
+    color: purple;
 }
 
 .description-box {
-    border: 2px solid black;
-    padding: 10px;
+    padding: 15px;
     text-align: left;
-    font-size: 14px;
+    font-size: 15px;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #333;
+    min-height: 100px; /* Added minimum height */
+    resize: vertical; /* Allow vertical resizing */
 }
 
 /* Buttons (Join, Edit, Delete) */
 .button-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 15px;
 }
 
 button {
-    padding: 8px;
-    border: 2px solid black;
-    background: none;
+    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Lighter border */
+    background: rgba(0, 0, 0, 0.1); /* Subtle button background */
+    color: #333;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     width: 100%;
+    border-radius: 8px;
+    transition: background 0.3s ease;
 }
 
 button:hover {
-    background-color: #ddd;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 /* Right Section - Image Slider */
 .image-slider {
-    width: 45%;
+    width: 48%; /* Slightly adjusted width */
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-left: 20px;
+    padding-top: 10px;
 }
 
 /* Placeholder for Image */
 .image-placeholder {
     width: 100%;
-    height: 200px;
-    background-color: #ddd;
+    height: 300px; /* Increased height */
+    background-color: rgba(255, 255, 255, 0.1); /* Glass effect */
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.5); /* Dashed border for placeholder */
+    color: #888; /* Lighter text color */
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 /* Pagination Dots */
 .dots {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background-color: #aaa;
     border-radius: 50%;
-    margin: 0 5px;
+    margin: 0 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .dot.active {
-    background-color: black;
+    background-color: #333;
 }
 
 /* Delete Button */
 .delete-event {
-    margin-top: 20px;
-    padding: 8px 16px;
-    border: 2px solid black;
-    background: none;
+    margin-top: 25px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Lighter border */
+    background: rgba(255, 0, 0, 0.1); /* Red with transparency */
+    color: darkred;
     cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
 }
 
 .delete-event:hover {
-    background-color: #f8d7da;
+    background-color: rgba(255, 0, 0, 0.2);
 }
 
 /* Responsive Design */
@@ -129,6 +192,7 @@ button:hover {
 
     .event-details,
     .image-slider {
-        width: 100%;
+        width: 90%; /* Adjusted for smaller screens */
+        margin-bottom: 20px; /* Added spacing between sections */
     }
 }
