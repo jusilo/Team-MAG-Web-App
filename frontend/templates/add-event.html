@@ -6,7 +6,6 @@
     <title>Add Event</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/add-event.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.8/dist/sweetalert2.min.css" rel="stylesheet">
-    <!--   <script defer src="{{ url_for('static', filename='js/add-event.js') }}"></script>--> 
 </head>
 <body>
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -26,11 +25,10 @@
                     <img id="profileImage" src="{{ url_for('static', filename='Files/team_mang.png') }}" alt="Adjustable Image">
                 </div>
                 <form id="eventForm" action="/addevent" method="POST" enctype="multipart/form-data">
-                    <input type="text" id="eventName" name="eventName"placeholder="EVENT NAME" required>
+                    <input type="text" id="eventName" name="eventName" placeholder="EVENT NAME" required>
                     <input type="text" id="eventPlace" name="eventPlace" placeholder="PLACE" required>
                     <input type="date" id="eventDate" name="eventDate" required>
                     <textarea id="eventDescription" name="eventDescription" placeholder="DESCRIPTION" required></textarea>
-                    
             </div>
         </div>
 
@@ -43,11 +41,12 @@
                 <!-- Thumbnails will be dynamically added here -->
             </div>
             <input type="file" id="imageUpload" name="imagefiles" accept="image/*" multiple>
-            <button type="submit">CREATE</button>
-                </form>
+            <button type="button" id="createEventBtn">CREATE</button>
+            </form>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/add-event.js') }}"></script>
 </body>
 </html>

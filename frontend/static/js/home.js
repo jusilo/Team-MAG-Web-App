@@ -1,5 +1,128 @@
 // home.js
 
+function confirmAddEvent(url) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to add a new event?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, go ahead!',
+        cancelButtonText: 'No, cancel',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirect to the "add event" page if confirmed
+            window.location.href = url;
+        }
+    });
+}
+function confirmJoin(event, eventId) {
+    event.preventDefault(); // Prevent the form from submitting immediately
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to join this event?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, join it!',
+        cancelButtonText: 'No, go back'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If confirmed, submit the form
+            document.getElementById('join-event-form-' + eventId).submit();
+        }
+    });
+}
+
+function confirmEdit(event, eventId) {
+    event.preventDefault(); // Prevent the default action
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to edit this event?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, edit it!',
+        cancelButtonText: 'No, go back'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If confirmed, redirect to the edit event page
+            window.location.href = "/edit-event/" + eventId;  // Redirect to the edit page
+        }
+    });
+}
+
+function confirmCancel(event, eventId) {
+    event.preventDefault(); // Prevent the form from submitting immediately
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to cancel this event?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, cancel it!',
+        cancelButtonText: 'No, keep it'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If confirmed, submit the form
+            document.getElementById('cancel-event-form-' + eventId).submit();
+        }
+    });
+}
+
+function confirmJoin(event, eventId) {
+    event.preventDefault(); // Prevent the form from submitting immediately
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to join this event?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, join it!',
+        cancelButtonText: 'No, go back'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If confirmed, submit the form
+            document.getElementById('join-event-form-' + eventId).submit();
+        }
+    });
+}
+
+function confirmEdit(event, eventId) {
+    event.preventDefault(); // Prevent the default action
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to edit this event?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, edit it!',
+        cancelButtonText: 'No, go back'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If confirmed, redirect to the edit event page
+            window.location.href = "/edit-event/" + eventId;  // Redirect to the edit page
+        }
+    });
+}
+
+function confirmCancel(event, eventId) {
+    event.preventDefault(); // Prevent the form from submitting immediately
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to cancel this event?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, cancel it!',
+        cancelButtonText: 'No, keep it'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If confirmed, submit the form
+            document.getElementById('cancel-event-form-' + eventId).submit();
+        }
+    });
+}
+
 window.onload = function() {
     const messages = document.getElementById('flash-messages');
     if (messages) {

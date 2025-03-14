@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify, session, redirect, url_for, flash, render_template
 from app import db
-from .model import Event, User
+from .model import Event, User, Event_album
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import func
 from sqlalchemy.dialects.postgresql import array
-import logging
+
 
 # Create Blueprint
 join_event_blueprint = Blueprint('join_event', __name__)
@@ -16,21 +16,17 @@ def join_event(event_id):
     if not user_id:
         flash('User not logged in', 'error')
         return render_template("index.html")  # Redirect to login page
-    logging.info(f"User ID from session: {user_id}")
 
     # Fetch the event by ID
     event = Event.query.get(event_id)
     if not event:
         flash('Event not found', 'error')
         return redirect(url_for('events.home_page'))   # Redirect to home page or a list of events
-    logging.info(f"Event found: {event.event_name}")
 
     try:
     # If event_attendees is None (initialize it as an empty list)
         if event.event_attendees is None:
             event.event_attendees = []
-
-        logging.info(f"Current attendees before adding: {event.event_attendees}")
 
         # Check if user is already attending
         if user_id in event.event_attendees:
@@ -45,7 +41,6 @@ def join_event(event_id):
         )
         db.session.commit()
 
-        logging.info(f"Updated attendees list: {event.event_attendees + [user_id]}")
 
         flash('Successfully joined the event', 'success')
         return redirect(url_for('events.home_page'))
@@ -53,6 +48,53 @@ def join_event(event_id):
     
     except SQLAlchemyError as e:
         db.session.rollback()
-        logging.error(f"Database error while joining event: {e}")
         flash('Error joining the event: ' + str(e), 'error')
         return redirect(url_for('events.home_page')) 
+    
+#Route for canceling or deleting an event
+@join_event_blueprint.route('/cancel_event/<int:event_id>', methods=['POST'])
+def cancel_event(event_id):
+    user_id = session.get('uid')
+    if not user_id:
+        flash('User not logged in', 'error')
+        return render_template("index.html")  # Redirect to login page
+    
+    event = Event.query.get(event_id)
+    if not event:
+        flash('Event not found', 'error')
+        return redirect(url_for('events.home_page'))
+    
+    try:
+        #If the user is the creator → DELETE the event
+        if user_id == event.uid:
+            
+            # Delete the related event_album entries manually
+            db.session.query(Event_album).filter(Event_album.event_id == event_id).delete()
+
+            #Now delete the event
+            db.session.delete(event)
+            db.session.commit()
+            flash('Event deleted', 'success')
+            return redirect(url_for('events.home_page'))
+        
+        #If the user is a participant → REMOVE them from attendees
+        elif user_id in event.event_attendees:
+            # Use `func.array_remove` to safely remove the user from the attendees array
+            db.session.execute(
+                Event.__table__.update().
+                where(Event.event_id == event_id).
+                values(event_attendees=func.array_remove(Event.event_attendees, user_id))
+            )
+            db.session.commit()
+            flash('You have left the event', 'success')
+            return redirect(url_for('events.home_page'))
+        
+        else:
+            flash('You are not attending this event', 'warning')
+
+        return redirect(url_for('events.home_page'))
+    
+    except SQLAlchemyError as e:
+        db.session.rollback()
+        flash('Error canceling the event: ' + str(e), 'error')
+        return redirect(url_for('events.home_page'))
