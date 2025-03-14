@@ -52,18 +52,19 @@
                           <!-- Conditional Buttons -->
                         {% if event.uid == session['uid'] %}
                         <!-- If the user is the creator -->
+                        <div class="joined-events">
                             <a href="{{ url_for('edit-events.editevent', event_id=event.event_id) }}">
                                 <button class="edit-event-btn">Edit Event</button>
                             </a>
-                            <a href="">
+                            <form action="{{url_for('join_event.cancel_event', event_id=event.event_id)}}" method="POST">
                                 <button class="cancel-event-btn">Cancel Event</button>
-                            </a>
-
+                            </form>
+                        </div>
                      {% elif event.event_id in user_joined_events %}
                         <!-- If the user has already joined the event -->
                          <div class="joined-events">
                             <button class="joined-btn" disabled>Joined</button>
-                            <form action="" method="POST">
+                            <form action="{{url_for('join_event.cancel_event', event_id=event.event_id)}}" method="POST">
                                 <button class="cancel-event-btn" type="submit">Cancel</button>
                             </form>
                         </div>
