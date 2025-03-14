@@ -51,15 +51,28 @@
 
                           <!-- Conditional Buttons -->
                         {% if event.uid == session['uid'] %}
-                        <!-- Show "Cancel Event" button to the creator -->
-                        <a href="{{ url_for('edit-events.editevent', event_id=event.event_id) }}">
-                            <button class="edit-event-btn">Edit Event</button>
-                        </a>
-                     {% else %}
-                        <!-- Show "Join Event" button to other users -->
-                        <form action="{{ url_for('join_event.join_event', event_id=event.event_id) }}" method="POST">
-                            <button class="join-event-btn" type="submit">Join Event</button>
-                        </form>
+                        <!-- If the user is the creator -->
+                            <a href="{{ url_for('edit-events.editevent', event_id=event.event_id) }}">
+                                <button class="edit-event-btn">Edit Event</button>
+                            </a>
+                            <a href="">
+                                <button class="cancel-event-btn">Cancel Event</button>
+                            </a>
+
+                     {% elif event.event_id in user_joined_events %}
+                        <!-- If the user has already joined the event -->
+                         <div class="joined-events">
+                            <button class="joined-btn" disabled>Joined</button>
+                            <form action="" method="POST">
+                                <button class="cancel-event-btn" type="submit">Cancel</button>
+                            </form>
+                        </div>
+
+                        {% else %}  
+                        <!-- If the user hasn't joined the event -->
+                            <form action="{{ url_for('join_event.join_event', event_id=event.event_id) }}" method="POST">
+                                <button class="join-event-btn" type="submit">Join Event</button>
+                            </form>
                     {% endif %}
                       </div>
                     {% endfor %}
