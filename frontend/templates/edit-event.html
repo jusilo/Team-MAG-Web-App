@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/edit-event.css') }}">
-    <script defer src="{{ url_for('static', filename='js/edit-event.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -14,7 +14,11 @@
             <a href="{{ url_for('events.home_page') }}"><button class="back-btn">Go Back</button></a>
         </header>
         
-        <form method="POST" action="{{ url_for('edit-events.editevent', event_id=event.event_id) }}">
+        <!-- Form for editing the event -->
+        <form id="editEventForm" method="POST" action="{{ url_for('edit-events.editevent', event_id=event.event_id) }}">
+            <!-- Hidden field to track action (either 'save' or 'cancel') -->
+            <input type="hidden" name="action" id="action" value="save">
+            
             <!-- Left Section - Event Details -->
             <div class="event-details">
                 <div class="image-container">
@@ -35,25 +39,16 @@
                     <!-- Event Day Field -->
                     <input type="date" name="event_day" value="{{ event.event_day.strftime('%Y-%m-%d') }}" required>
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="edit-btn">Save Changes</button>
+                    <!-- Save Button -->
+                    <button type="button" class="edit-btn" id="saveBtn">Save Changes</button>
+                    
+                    <!-- Cancel Button -->
+                    <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
                 </div>
             </div>
-        
-            <!-- Right Section - Image Slider -->
-            <div class="image-slider">
-                <div class="image-placeholder">
-                    <img src="{{ url_for('static', filename='Files/image1.jpg') }}" alt="Event Image" width="100%">
-                </div>
-                <div class="dots">
-                    <div class="dot active"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                <button class="delete-event">DELETE EVENT</button>
-            </div>
-        </div>
-        
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+    <script src="{{ url_for('static', filename='js/edit-event.js') }}"></script>
 </body>
 </html>
