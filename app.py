@@ -48,6 +48,11 @@ app.register_blueprint(edit_events_blueprint)
 from backend.join_event import join_event_blueprint
 app.register_blueprint(join_event_blueprint)
 
+# Register the img rendering blueprint
+from backend.img_rendering import img_blueprint
+app.register_blueprint(img_blueprint)
+
+
 # Route for the home page (index)
 @app.route('/')
 def index():
