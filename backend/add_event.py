@@ -6,6 +6,7 @@ from .model import User, Event, Event_album  # Import the User and Event model f
 # Define the Blueprint
 addevent_blueprint = Blueprint('addevent', __name__, template_folder='frontend/templates')
 
+
 @addevent_blueprint.route('/addevent', methods=['GET', 'POST'])
 def addevent():
     # Check if user is logged in before proceeding
