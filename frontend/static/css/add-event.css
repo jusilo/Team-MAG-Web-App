@@ -4,7 +4,11 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-
+.back-btn{
+    position: fixed;
+    top: 20px; /* adjust for padding */
+    left: 20px; /* adjust for padding */
+}
 body {
     display: flex;
     justify-content: center;
