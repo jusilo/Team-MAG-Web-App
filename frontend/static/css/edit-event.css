@@ -1,134 +1,152 @@
-/* General Container */
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+/* ========== General Page Styles ========== */
+body {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/static/Files/background_all.jpg') no-repeat center center/cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
 }
 
-/* Left Section - Event Details */
-.event-details {
-    width: 45%;
-    border: 2px solid black;
-    padding: 20px;
-    border-radius: 10px;
+/* ========== Main Container ========== */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    max-width: 490px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    margin: 0 auto;
+}
+
+/* ========== Header Section ========== */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 24px;
+    color: black;
+    font-weight: bold;
+}
+
+.back-btn {
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* ========== Image Section ========== */
+.image-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.image-container img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ========== Form Section ========== */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    font-size: 14px;
+    color: black;
+}
+
+input, textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: auto;
+}
+
+textarea {
+    min-height: 80px;
+    resize: none;
+}
+
+/* ========== Save Button ========== */
+.save-btn {
+    width: auto; /* Keeps width based on content */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    background: purple;
+    color: white;
+    text-align: center;
+    display: inline-block; /* Keeps it inline */
+    margin: 10px 0; /* Adds spacing but does not center */
+}
+
+.save-btn:hover {
+    background: darkviolet;
+}
+
+/* ========== Delete Button Centered ========== */
+.delete-btn {
+    display: block; /* Makes it a block element */
+    margin: 10px auto; /* Centers it horizontally */
+    width: auto; /* Keeps the button width dynamic */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    background: rgba(255, 0, 0, 0.2);
+    color: darkred;
     text-align: center;
 }
 
-/* Image Placeholder */
-.image-container {
-    width: 100%;
-    height: 150px;
-    background-color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-    font-weight: bold;
+.delete-btn:hover {
+    background: rgba(255, 0, 0, 0.4);
 }
 
-/* Description Section */
-.description-title {
-    border: 2px solid purple;
-    display: inline-block;
-    padding: 5px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.description-box {
-    border: 2px solid black;
-    padding: 10px;
-    text-align: left;
-    font-size: 14px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-/* Buttons (Join, Edit, Delete) */
-.button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-button {
-    padding: 8px;
-    border: 2px solid black;
-    background: none;
-    cursor: pointer;
-    font-size: 14px;
-    width: 100%;
-}
-
-button:hover {
-    background-color: #ddd;
-}
-
-/* Right Section - Image Slider */
-.image-slider {
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Placeholder for Image */
-.image-placeholder {
-    width: 100%;
-    height: 200px;
-    background-color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Pagination Dots */
-.dots {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    background-color: #aaa;
-    border-radius: 50%;
-    margin: 0 5px;
-    cursor: pointer;
-}
-
-.dot.active {
-    background-color: black;
-}
-
-/* Delete Button */
-.delete-event {
-    margin-top: 20px;
-    padding: 8px 16px;
-    border: 2px solid black;
-    background: none;
-    cursor: pointer;
-}
-
-.delete-event:hover {
-    background-color: #f8d7da;
-}
-
-/* Responsive Design */
+/* ========== Responsive Design ========== */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
-        align-items: center;
+        width: 90%;
+        padding: 15px;
     }
+}
+    input, textarea {
+    width: calc(100% - 10px);
+}
+a {
+    text-decoration: none;
+    color: inherit;
 
-    .event-details,
-    .image-slider {
-        width: 100%;
-    }
 }

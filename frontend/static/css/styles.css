@@ -1,93 +1,133 @@
-/* styles.css */
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
     margin: 0;
+    background: url('/static/Files/background_all.jpg') no-repeat center center/cover;
 }
 
+/* Glassmorphic Container */
 .container {
     display: flex;
-    background: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1); /* Transparent white */
+    backdrop-filter: blur(12px); /* Frosted Glass Effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
     overflow: hidden;
     width: 600px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Left Section with Image */
 .image-section {
     flex: 1;
-    background: #e0e0e0;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 10px; 
 }
 
 .image-section img {
-    max-width: 100%;
-    height: auto;
+    width: 95%;
+    height: 95%;
+    object-fit: cover; /* Change to 'cover' */
 }
 
+/* Right Section (Form) */
 .form-section {
     flex: 1;
     padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 30px 1px 1px 0; 
+
 }
 
 h1 {
     margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+    font-size: 26px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    padding-right: 20px;
 }
 
+/* Inputs */
 input {
-    width: 100%;
-    padding: 10px;
+    width: 80%;
+    padding: 14px; /* Increased padding */
     margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px; /* Slightly larger radius */
+    font-size: 16px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: all 0.3s;
 }
 
-button{
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+    border-color: #007bff;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Buttons */
+button {
+    width: 90%; /* Ensures both buttons are the same width */
+    padding: 12px; /* Standardized padding */
+    margin: 10px 0; /* Adjusted margin to be consistent */
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-}
-
-.login-btn {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.signup-btn {
+    font-weight: 500;
+    transition: all 0.3s;
     display: flex;
-    justify-content: center; /* Centers the button horizontally within its container */
-    align-items: center; /* Centers the button vertically within its container (if needed) */
-    margin-top: 5px;
-    padding-top: 0.5rem;
-    background-color: #28a745;
-    color: #28a745;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    height: 2rem;
-    cursor: pointer;
-    text-align: center; /* Horizontally center the text */
-    line-height: 2rem;  /* Vertically center the text based on the button's height */
-    border: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-.signup{
+
+/* Login Button */
+.login-btn {
+    width: 90%;
+    background-color: #007bff;
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Sign Up Button */
+.signup-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-right: 28px;
+}
+
+.signup {
     background-color: #28a745;
     color: white;
 }
 
+.signup:hover {
+    background-color: #218838;
+}
+
+/* Make it look good on mobile */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 90%;
+    }
+}
