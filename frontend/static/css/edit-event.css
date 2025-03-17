@@ -145,3 +145,8 @@ textarea {
     input, textarea {
     width: calc(100% - 10px);
 }
+a {
+    text-decoration: none;
+    color: inherit;
+
+}

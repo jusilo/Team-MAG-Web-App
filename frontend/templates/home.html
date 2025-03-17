@@ -50,26 +50,24 @@
                         <li>{{ attendee.first_name }} {{ attendee.last_name }}</li>
                         {% endfor %}
                     </ul>
-
-                    <!-- image show -->
-                    {% for event in events %}
-                    <div class="event-card">
-                        <h2>{{ event.event_name }}</h2>
-                        <p>{{ event.event_description }}</p>
-
-                        {% set album = event_albums[event.event_id] %}
-                        {% if album %}
-                        <div class="event-images">
-                            {% for i in range(album.event_images | length) %}
-                            <img src="{{ url_for('img.image', album_id=album.album_id, image_index=i) }}"
-                                alt="Event Image {{ i }}">
-                            {% endfor %}
+                    
+                        <!-- image show -->
+                        {% for event in events %}
+                        <div class="event-card">
+                    
+                            {% set album = event_albums[event.event_id] %}
+                            {% if album %}
+                            <div class="event-images">
+                                {% for i in range(album.event_images | length) %}
+                                <img src="{{ url_for('img.image', album_id=album.album_id, image_index=i) }}" alt="Event Image {{ i }}">
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <p>No images for this event.</p>
+                            {% endif %}
                         </div>
-                        {% else %}
-                        <p>No images for this event.</p>
-                        {% endif %}
-                    </div>
-                    {% endfor %}
+                        {% endfor %}
+                   
 
 
 
@@ -115,8 +113,9 @@
             {% endif %}
         </div>
     </div>
-
-
+    <form action="{{ url_for('login.logout') }}" method="POST">
+    <button class="sticky-btn" >Log Out</button>
+    </form>
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
