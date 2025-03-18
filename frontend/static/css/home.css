@@ -3,11 +3,15 @@ body {
     font-family: 'Roboto', sans-serif; /* Using Roboto font from Google Fonts */
     margin: 0;
     padding: 20px;
-    background: url('/static/Files/background_all.jpg') no-repeat center center/cover;
-    color: #333; /* Default text color for better contrast */
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Soft gradient background */
+    color: #333; /* Softer text color */
     line-height: 1.6; /* Improved line height for readability */
     -webkit-font-smoothing: antialiased; /* For smoother font rendering on macOS/iOS */
     -moz-osx-font-smoothing: grayscale; /* For smoother font rendering on Firefox macOS */
+    height: 100vh; /* Ensure the body takes the full height of the viewport */
+    background-attachment: fixed; /* Ensure the background stays fixed */
+    background-position: center center; /* Center the background */
+    background-size: cover; /* Ensure the background covers the entire screen */
 }
 
 .container {
@@ -42,33 +46,34 @@ header h1 {
     font-weight: 700; /* Bold font weight for title */
 }
 
-/* Buttons */
+/* General Button Styles */
 button {
     padding: 12px 20px; /* Slightly larger padding */
-    background-color: #007bff;
+    background-color: #6c7ae0; /* Match the gradient theme from index.html */
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 7px; /* Slightly increased border-radius */
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out; /* Add transform transition for active state */
-    font-weight: 500; /* Slightly bolder font weight */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 7px; /* Rounded corners for the button */
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
 
 button:hover {
-    background-color: #0056b3;
-}
-button:focus {
-    outline: none; /* Remove default focus outline */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3); /* Focus ring using box-shadow */
-}
-button:active {
-    transform: scale(0.98); /* Slightly scale down on click */
-    background-color: #004280; /* Even darker active background */
+    background-color: #596ab2; /* Slightly darker on hover */
 }
 
+button:focus {
+    outline: none; /* Remove the default focus outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3); /* Subtle focus outline */
+}
+
+button:active {
+    transform: scale(0.98); /* Slightly scale down the button on click */
+    background-color: #004280; /* Darker background when active */
+}
+
+/* Specific Buttons */
 .primary-btn {
-    background-color: #28a745;
+    background-color: #28a745; /* Green color for primary action */
 }
 
 .primary-btn:hover {
@@ -76,51 +81,36 @@ button:active {
 }
 
 .danger-btn {
-    background-color: red;
+    background-color: #dc3545; /* Red color for danger action */
 }
 
 .danger-btn:hover {
-    background-color: darkred;
+    background-color: #c82333;
 }
+
+/* Join Event Button (specific to the "Join Event" action) */
 .join-event-btn {
-    background-color: #00c851; /* Example: Green for "Join" */
+    background-color: #00c851; /* Green color to match "Join" action */
 }
+
 .join-event-btn:hover {
     background-color: #00a342;
 }
 
+/* Cancel Event Button (specific to the "Cancel Event" action) */
 .cancel-event-btn {
-    background-color: #dc3545; /* Example: Red for "Cancel" */
-}
-.cancel-event-btn:hover {
-    background-color: #c82333;
-}
-
-.joined-btn {
-    background-color: #ccc;
-    color: #666;
-    cursor: not-allowed;
-}
-
-.cancel-event-btn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
+    background-color: #f44336; /* Red color for cancel action */
 }
 
 .cancel-event-btn:hover {
     background-color: #d32f2f;
 }
 
-.joined-events{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+/* Disable "Joined" Button */
+.joined-btn {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
 }
 
 /* Input Fields */
@@ -158,18 +148,13 @@ textarea {
 
 /* Event Cards with Transparent Glass Effect */
 .event-card {
-    max-width: 100%;
-    /* Glass Effect Additions Below */
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    margin-top: 10px;
-    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease-in-out;
-    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .event-card:hover {
@@ -359,7 +344,7 @@ textarea {
     bottom: 20px;
     left: 20px;
     padding: 12px 20px;
-    background-color: #007bff;
+    background-color: #6c7ae0;
     color: white;
     border: none;
     border-radius: 8px 8px;

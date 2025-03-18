@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.8/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 
@@ -113,25 +113,16 @@
             {% endif %}
         </div>
     </div>
-    <form action="{{ url_for('login.logout') }}" method="POST">
-    <button class="sticky-btn" >Log Out</button>
+    {% if session['uid'] %}
+    <form id="logout-form" action="{{ url_for('login.logout') }}" method="POST">
+        <button type="button" class="sticky-btn" id="logout-btn">Log Out</button>
     </form>
+{% endif %}
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
     <script src="{{ url_for('static', filename='js/home.js') }}"></script>
-    <script>
-        /*document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("eventGrid").addEventListener("click", function (e) {
-                const card = e.target.closest(".event-card");
-                if (card) {
-                    const eventId = card.querySelector(".edit-event-btn").getAttribute("data-id");
-                    window.location.href = `event-details.html?id=${eventId}`;
-                }
-            });
-        });*/
-    </script>
-
 
 
 </body>

@@ -4,7 +4,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url('/static/Files/background_all.jpg') no-repeat center center/cover;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Soft gradient background */
+    color: #333; /* Softer text color */
     font-family: Arial, sans-serif;
     margin: 0;
 }
