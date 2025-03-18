@@ -25,13 +25,19 @@
                     <div class="carousel">
                         {% for image in event_images %}
                         <div class="carousel-item">
-                            <img src="{{ url_for('static', filename='Files/' + image) }}" alt="Event Image">
+                            <img src="{{ url_for('static', filename='Files/image1.jpg') }}" alt="Event Image">
                         </div>
                         {% endfor %}
+                    </div><br><br><br>                      
+                    <div class="image-actions">
+                        <button class="delete-image-btn">Delete</button>
+                        <button class="add-image-btn">Add Image</button>
                     </div>
-                    <button class="carousel-prev">❮</button>
-                    <button class="carousel-next">❯</button>
+                    <button class="carousel-prev" aria-label="Previous image">❮</button>
+                    <button class="carousel-next" aria-label="Next image">❯</button>
+                    
                 </div>
+                    <br><br>
                 <div class="description-title">Description</div>
                 <div class="description-box">
                     <!-- Event Name Field -->
@@ -51,6 +57,10 @@
                     
                     <!-- Cancel Button -->
                     <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+                    
+                    <!-- Edit and Delete Buttons -->
+                    <button id="edit-button" class="btn btn-primary">Edit</button>
+                    <button id="delete-button" class="btn btn-danger">Delete</button>
                 </div>
             </div>
         </form>

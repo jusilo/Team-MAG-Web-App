@@ -59,6 +59,7 @@ h1 {
     width: 100%;
     text-align: center;
     margin-bottom: 15px;
+    position: relative;
 }
 
 .image-container img {
@@ -75,18 +76,19 @@ h1 {
 }
 
 .carousel-item {
-    display: none;
-    width: 100%;
+    display: block;
+    opacity: 0;
     transition: opacity 0.5s ease;
+    position: relative;
 }
 
 .carousel-item.active {
-    display: block;
+    opacity: 1;
 }
 
 .carousel img {
     width: 100%;
-    max-height: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 8px;
 }
@@ -112,12 +114,51 @@ h1 {
     right: 10px;
 }
 
+.image-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.delete-image-btn, .add-image-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.delete-image-btn {
+    background: rgba(255, 0, 0, 0.7);
+    color: white;
+}
+
+.delete-image-btn:hover {
+    background: rgba(255, 0, 0, 0.9);
+}
+
+.add-image-btn {
+    background: rgba(0, 128, 0, 0.7);
+    color: white;
+}
+
+.add-image-btn:hover {
+    background: rgba(0, 128, 0, 0.9);
+}
+
 /* ========== Form Section ========== */
-form {
-    width: 100%;
+.event-details {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 20px;
+}
+
+.image-container {
+    order: -1;
+    margin-bottom: 20px;
 }
 
 label {
@@ -177,6 +218,13 @@ textarea {
 
 .delete-btn:hover {
     background: rgba(255, 0, 0, 0.4);
+}
+
+/* ========== Edit and Delete Buttons ========== */
+#edit-button, #delete-button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
 }
 
 /* ========== Responsive Design ========== */
