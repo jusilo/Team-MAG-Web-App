@@ -180,24 +180,45 @@ textarea {
     resize: none;
 }
 
-/* ========== Save Button ========== */
-.save-btn {
-    width: auto; /* Keeps width based on content */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-    background: purple;
-    color: white;
-    text-align: center;
-    display: inline-block; /* Keeps it inline */
-    margin: 10px 0; /* Adds spacing but does not center */
+/* ========== Save and Cancel Buttons ========== */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
 }
 
-.save-btn:hover {
-    background: darkviolet;
+.edit-btn, .cancel-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #43A047;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.cancel-btn {
+  background-color: #F44336;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #E53935;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* ========== Delete Button Centered ========== */
