@@ -50,24 +50,30 @@
                         <li>{{ attendee.first_name }} {{ attendee.last_name }}</li>
                         {% endfor %}
                     </ul>
-                    
-                        <!-- image show -->
-                        {% for event in events %}
-                        <div class="event-card">
-                    
-                            {% set album = event_albums[event.event_id] %}
-                            {% if album %}
-                            <div class="event-images">
-                                {% for i in range(album.event_images | length) %}
-                                <img src="{{ url_for('img.image', album_id=album.album_id, image_index=i) }}" alt="Event Image {{ i }}">
-                                {% endfor %}
-                            </div>
-                            {% else %}
-                            <p>No images for this event.</p>
-                            {% endif %}
+
+                    <!-- image show -->
+                    {% for event in events %}
+                    <div class="event-card">
+
+                        {% set album = event_albums[event.event_id] %}
+                        {% if album and album.event_images|length > 0 %}
+                        <div class="slides" id="slides-{{ event.event_id }}">
+                            {% for i in range(album.event_images | length) %}
+                            <img src="{{ url_for('img.image', album_id=album.album_id, image_index=i) }}"
+                                alt="Event Image {{ i }}" class="{{ 'active' if i == 0 else '' }}">
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-                   
+                        <button class="prev" onclick="moveSlide(-1, {{ event.event_id }})">❮</button>
+                        <button class="next" onclick="moveSlide(1, {{ event.event_id }})">❯</button>
+                        {% else %}
+                        <p>No images for this event.</p>
+                        {% endif %}
+
+                    </div>
+                    {% endfor %}
+
+
+
 
 
 
@@ -114,7 +120,7 @@
         </div>
     </div>
     <form action="{{ url_for('login.logout') }}" method="POST">
-    <button class="sticky-btn" >Log Out</button>
+        <button class="sticky-btn">Log Out</button>
     </form>
 
 

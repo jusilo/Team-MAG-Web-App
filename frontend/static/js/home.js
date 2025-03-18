@@ -123,7 +123,7 @@ function confirmCancel(event, eventId) {
     });
 }
 
-window.onload = function() {
+window.onload = function () {
     const messages = document.getElementById('flash-messages');
     if (messages) {
         const messageList = messages.children;
@@ -176,6 +176,24 @@ window.onload = function() {
         }
     }
 };
+
+//for carousel
+function moveSlide(direction, eventId) {
+    const slides = document.querySelectorAll(`#slides-${eventId} img`);
+    if (slides.length === 0) return;
+
+    let currentIndex = Array.from(slides).findIndex(img => img.classList.contains('active'));
+
+    if (currentIndex === -1) {
+        currentIndex = 0;
+        slides[currentIndex].classList.add('active');
+        return;
+    }
+
+    slides[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + direction + slides.length) % slides.length;
+    slides[currentIndex].classList.add('active');
+}
 
 
 /*document.addEventListener("DOMContentLoaded", function () {
