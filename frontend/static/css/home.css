@@ -206,15 +206,13 @@ textarea {
 
 /* Event Cards with Transparent Glass Effect */
 .event-card {
-    max-width: 100%;
+    margin: 10px;
+    padding: 15px;
     /* Glass Effect Additions Below */
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    margin-top: 10px;
-    margin-bottom: 10px;
     border-radius: 12px;
-    padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease-in-out;
     border: 1px solid #eee;
