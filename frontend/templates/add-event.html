@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Event</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/add-event.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.8/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -18,8 +19,20 @@
         {% endif %}
     {% endwith %}
     <header>
-            
         <a href="{{ url_for('events.home_page') }}"><button class="back-btn">Go Back</button></a>
+        <div class="theme-container">
+            <div class="theme-switch-wrapper">
+                <div class="theme-mode-text">LIGHT</div>
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round">
+                        <i class="fas fa-sun light-icon"></i>
+                        <i class="fas fa-moon dark-icon"></i>
+                    </div>
+                </label>
+                <div class="theme-mode-text dark-text">DARK</div>
+            </div>
+        </div>
     </header>
     <div class="container">
         <!-- Event Form Section -->

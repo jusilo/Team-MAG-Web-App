@@ -1,18 +1,144 @@
 /* General Styles */
 :root {
-    --bg-color: #121212;
-    --text-color: #ffffff;
-    --header-bg: #1e1e1e;
-    --button-bg: #bb86fc;
-    --button-text: #000000;
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --header-bg: #ffffff;
+    --button-bg: #6c7ae0;
+    --button-text: #ffffff;
+    --card-bg: #ffffff;
+    --card-text: #333333;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --input-bg: #ffffff;
+    --input-border: #e2e8f0;
+    --footer-bg: #f8f9fa;
+    --footer-text: #6c757d;
 }
 
 [data-theme="dark"] {
     --bg-color: #121212;
-    --text-color: #ffffff;
+    --text-color: #f8f9fa;
     --header-bg: #1e1e1e;
     --button-bg: #bb86fc;
     --button-text: #000000;
+    --card-bg: #2d2d2d;
+    --card-text: #f8f9fa;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --input-bg: #333333;
+    --input-border: #444444;
+    --footer-bg: #1a1a1a;
+    --footer-text: #adb5bd;
+}
+
+/* Theme Switch Container */
+.theme-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Theme Switch */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.theme-mode-text {
+    margin: 0 10px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: var(--text-color);
+}
+
+.dark-text {
+    opacity: 0.5;
+}
+
+html[data-theme='dark'] .dark-text {
+    opacity: 1;
+}
+
+html[data-theme='dark'] .theme-mode-text:first-child {
+    opacity: 0.5;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 80px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #202020;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #4e54c8;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    z-index: 2;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #202020;
+}
+
+input:checked + .slider:before {
+    transform: translateX(46px);
+    background-color: #4e54c8;
+}
+
+.light-icon, .dark-icon {
+    color: #ffffff;
+    font-size: 14px;
+    z-index: 1;
+}
+
+.light-icon {
+    margin-left: 5px;
+}
+
+.dark-icon {
+    margin-right: 5px;
+}
+
+input:not(:checked) + .slider .light-icon {
+    color: #fff;
+}
+
+input:not(:checked) + .slider .dark-icon {
+    color: #666;
+}
+
+input:checked + .slider .light-icon {
+    color: #666;
+}
+
+input:checked + .slider .dark-icon {
+    color: #fff;
 }
 
 body {
@@ -62,6 +188,8 @@ header {
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.3);
     transition: all 0.3s ease;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 header h1 {
@@ -114,6 +242,16 @@ button {
     transition: background-color 0.3s ease; /* Smooth transition */
 }
 
+.add-event-btn {
+    display: inline-block;
+    background-color: #6c7ae0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
 button:hover {
     background-color: #4338ca; /* Slightly darker on hover */
 }
@@ -148,6 +286,7 @@ button:active {
 /* Join Event Button (specific to the "Join Event" action) */
 .join-event-btn {
     background-color: #00c851; /* Green color to match "Join" action */
+    margin-bottom: 2rem;
 }
 
 .join-event-btn:hover {
@@ -156,11 +295,12 @@ button:active {
 
 /* Cancel Event Button (specific to the "Cancel Event" action) */
 .cancel-event-btn {
-    background-color: #f44336; /* Red color for cancel action */
+    background: rgba(255, 0, 0, 0.2);
+    color: darkred; /* Red color for cancel action */
 }
 
 .cancel-event-btn:hover {
-    background-color: #d32f2f;
+    background: rgba(255, 0, 0, 0.4);
 }
 
 /* Disable "Joined" Button */
@@ -184,17 +324,18 @@ input[type="date"],
 textarea {
     padding: 12px 16px;
     /* Slightly more padding */
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--input-border);
     /* Lighter border */
     border-radius: 8px;
     /* Consistent border-radius */
     font-size: 16px;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--input-bg);
     /* White background for inputs */
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
     /* Subtle inset shadow */
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    color: var(--text-color);
 }
 
 input[type="text"]:focus,
@@ -232,10 +373,11 @@ textarea {
 }
 
 .event-card {
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--card-shadow);
     overflow: hidden;
+    color: var(--card-text);
     padding: 0 1rem;
     animation: fadeIn 0.5s ease-in-out;
     transform: scale(1);
@@ -291,18 +433,18 @@ textarea {
     color: #666;
 }
 
-.event-button {
+.edit-event-btn {
     display: inline-block;
-    background: #007bff;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 25px;
+    background-color: #6c7ae0;
+    color: white;
+    border: none;
+    border-radius: 8px;
     text-decoration: none;
     transition: background 0.3s ease;
 }
 
-.event-button:hover {
-    background: #0056b3;
+.edit-event-btn:hover {
+    background-color: #0056b3;
 }
 
 /* Search Bar Container */
@@ -539,6 +681,7 @@ textarea {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
+    z-index: 9999; /* A large value ensures it's in front */
 }
 
 .sticky-btn:hover {
@@ -564,13 +707,14 @@ a {
 footer {
     margin-top: 3rem;
     padding: 2rem 1rem;
-    background-color: white;
+    background-color: var(--footer-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-top: 1px solid rgba(255,255,255,0.3);
     text-align: center;
     position: relative;
     z-index: 10;
+    color: var(--footer-text);
 }
 
 .footer-content {
@@ -582,4 +726,9 @@ footer {
     color: #4a5568;
     font-size: 0.9rem;
     margin: 0;
+}
+
+/* Remove old theme toggle button styles */
+.theme-toggle-btn {
+    display: none;
 }

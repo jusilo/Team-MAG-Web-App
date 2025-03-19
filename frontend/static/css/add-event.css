@@ -4,18 +4,179 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+
+:root {
+    /* Light theme variables */
+    --background-gradient: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    --text-color: #333;
+    --container-bg: rgba(255, 255, 255, 0.2);
+    --input-bg: rgba(255, 255, 255, 0.1);
+    --input-border: rgba(255, 255, 255, 0.5);
+    --button-bg: rgba(0, 0, 0, 0.7);
+    --button-hover: rgba(0, 0, 0, 0.9);
+    --button-text: white;
+    --container-border: rgba(255, 255, 255, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    /* Dark theme variables */
+    --background-gradient: linear-gradient(135deg, #2d3748, #1a202c);
+    --text-color: #e2e8f0;
+    --container-bg: rgba(26, 32, 44, 0.6);
+    --input-bg: rgba(45, 55, 72, 0.3);
+    --input-border: rgba(74, 85, 104, 0.5);
+    --button-bg: rgba(113, 128, 150, 0.7);
+    --button-hover: rgba(113, 128, 150, 0.9);
+    --button-text: #e2e8f0;
+    --container-border: rgba(74, 85, 104, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
 .back-btn{
     position: fixed;
     top: 20px; /* adjust for padding */
     left: 20px; /* adjust for padding */
 }
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+/* Theme Switch Container */
+.theme-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+/* Theme Switch */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.theme-mode-text {
+    margin: 0 10px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: var(--text-color);
+}
+
+.dark-text {
+    opacity: 0.5;
+}
+
+html[data-theme='dark'] .dark-text {
+    opacity: 1;
+}
+
+html[data-theme='dark'] .theme-mode-text:first-child {
+    opacity: 0.5;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 80px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #202020;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.slider:before {
+    background-color: #4e54c8;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    z-index: 2;
+}
+
+input:checked + .slider {
+    background-color: #202020;
+}
+
+input:checked + .slider:before {
+    transform: translateX(46px);
+    background-color: #4e54c8;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.light-icon, .dark-icon {
+    color: #ffffff;
+    font-size: 14px;
+    z-index: 1;
+}
+
+.light-icon {
+    margin-left: 5px;
+}
+
+.dark-icon {
+    margin-right: 5px;
+}
+
+input:not(:checked) + .slider .light-icon {
+    color: #fff;
+}
+
+input:not(:checked) + .slider .dark-icon {
+    color: #666;
+}
+
+input:checked + .slider .light-icon {
+    color: #666;
+}
+
+input:checked + .slider .dark-icon {
+    color: #fff;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Soft gradient background */
-    color: #333; /* Softer text color */
+    background: var(--background-gradient);
+    color: var(--text-color);
     overflow: hidden; /* Prevents scrollbars if content overflows */
 }
 
@@ -40,13 +201,13 @@ body {
 
 /* Event Form Section */
 .event-form-container {
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    background: var(--container-bg);
     padding: 20px;
     border-radius: 10px; /* Slightly more rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 4px 6px var(--shadow-color);
     width: 300px;
     backdrop-filter: blur(10px); /* Adds the glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: add a subtle border */
+    border: 1px solid var(--container-border);
 }
 
 .image-placeholder img {
@@ -65,10 +226,10 @@ form {
 input, textarea {
     width: 100%;
     padding: 12px; /* Slightly larger padding */
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent border */
+    border: 1px solid var(--input-border);
     border-radius: 6px; /* Slightly more rounded corners */
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent input background */
-    color: #333; /* Darker text for contrast */
+    background: var(--input-bg);
+    color: var(--text-color);
 }
 
 textarea {
@@ -78,8 +239,8 @@ textarea {
 
 button {
     padding: 12px 20px; /* More padding for a larger button */
-    background: rgba(0, 0, 0, 0.7); /* Slightly transparent black */
-    color: white;
+    background: var(--button-bg);
+    color: var(--button-text);
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -87,19 +248,19 @@ button {
 }
 
 button:hover {
-    background: rgba(0, 0, 0, 0.9); /* Darker hover effect */
+    background: var(--button-hover);
 }
 
 /* Image Upload Section */
 .image-upload-section {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--container-bg);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
     width: 400px;
     text-align: center;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--container-border);
 }
 
 .main-image-preview img {
@@ -121,7 +282,7 @@ button:hover {
     height: 80px;
     object-fit: cover;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent border */
+    border: 1px solid var(--input-border);
     transition: transform 0.2s ease; /* Smooth hover effect */
 }
 
@@ -132,8 +293,8 @@ button:hover {
 input[type="file"] {
     margin-top: 15px;
     padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--input-bg);
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    color: #333;
+    border: 1px solid var(--input-border);
+    color: var(--text-color);
 }

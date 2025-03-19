@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -33,7 +33,19 @@
                     <i class="search-icon fas fa-search"></i>
                 </form>
             </div>
-            <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
+            <div class="theme-container">
+                <div class="theme-switch-wrapper">
+                    <div class="theme-mode-text">LIGHT</div>
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round">
+                            <i class="fas fa-sun light-icon"></i>
+                            <i class="fas fa-moon dark-icon"></i>
+                        </div>
+                    </label>
+                    <div class="theme-mode-text dark-text">DARK</div>
+                </div>
+            </div>
         </header>
 
         <div class="event-grid" id="eventGrid">
@@ -124,9 +136,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
     <script src="{{ url_for('static', filename='js/home.js') }}"></script>
-    <!-- Theme Toggle -->
     <script src="{{ url_for('static', filename='js/themeToggle.js') }}"></script>
-
 </body>
 
 </html>
