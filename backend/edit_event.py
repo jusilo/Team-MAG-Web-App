@@ -1,9 +1,31 @@
 from flask import Blueprint, render_template, redirect, url_for, session, request, flash
 from app import db
-from .model import Event,Event_album  # Import the Event model from the main app
+from .model import Event, Event_album  # Import the Event model from the main app
 from datetime import datetime
+import os
 
 edit_events_blueprint = Blueprint('edit-events', __name__, template_folder='frontend/templates')
+
+def save_event_images(files, event_id):
+    # Create or get existing album
+    album = Event_album.query.filter_by(event_id=event_id).first()
+    if not album:
+        album = Event_album(event_id=event_id)
+        db.session.add(album)
+    
+    # Initialize event_images list if it doesn't exist
+    if not album.event_images:
+        album.event_images = []
+    
+    # Process each uploaded file
+    for file in files:
+        if file and file.filename:
+            # Read the image data
+            image_data = file.read()
+            # Append to the event_images list
+            album.event_images.append(image_data)
+    
+    db.session.commit()
 
 @edit_events_blueprint.route('/edit-event/<int:event_id>', methods=['GET', 'POST'])
 def editevent(event_id):
@@ -39,6 +61,15 @@ def editevent(event_id):
             
             # Update the last updated timestamp
             event.last_updated = datetime.now()
+
+            # Handle image uploads
+            files = request.files.getlist('new_img[]')
+            if files and any(file.filename for file in files):
+                try:
+                    save_event_images(files, event.event_id)
+                    flash("Images uploaded successfully", "success")
+                except Exception as e:
+                    flash(f"Error uploading images: {str(e)}", "error")
 
             # Commit changes to the database
             db.session.commit()

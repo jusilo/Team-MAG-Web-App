@@ -14,7 +14,7 @@ def addevent():
 
     if not files or all(file.filename == '' for file in files):
         flash("No files uploaded", "error")
-    print("Received files:", [file.filename for file in files])  # Debugging
+    
 
 
 
