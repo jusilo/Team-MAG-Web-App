@@ -158,6 +158,7 @@ button:active {
 /* Join Event Button (specific to the "Join Event" action) */
 .join-event-btn {
     background-color: #00c851; /* Green color to match "Join" action */
+    margin-bottom: 2rem;
 }
 
 .join-event-btn:hover {
