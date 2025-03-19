@@ -22,3 +22,4 @@ document.querySelector('.carousel-prev').addEventListener('click', prevItem);
 
 // Initialize first item
 showItem(currentIndex);
+ 

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.8/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
@@ -32,6 +33,7 @@
                     <i class="search-icon fas fa-search"></i>
                 </form>
             </div>
+            <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
         </header>
 
         <div class="event-grid" id="eventGrid">
@@ -112,11 +114,18 @@
     <form id="logout-form" action="{{ url_for('login.logout') }}" method="POST">
         <button type="button" class="sticky-btn" id="logout-btn">Log Out</button>
     </form>
-{% endif %}
-    
+    {% endif %}
+
+    <footer>
+        <div class="footer-content">
+            <p class="copyright">&copy; 2025 Team MAG. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
     <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    <!-- Theme Toggle -->
+    <script src="{{ url_for('static', filename='js/themeToggle.js') }}"></script>
 
 </body>
 

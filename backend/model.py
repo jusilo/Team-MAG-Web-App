@@ -1,6 +1,8 @@
 from app import db
 from sqlalchemy.dialects.postgresql import ARRAY, BYTEA
 from datetime import datetime
+from sqlalchemy.ext.mutable import MutableList
+
 
 class User(db.Model):
     __tablename__ = 'user_info'
@@ -56,5 +58,5 @@ class Event_album(db.Model):
 
     album_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'), nullable=False)
-    event_images = db.Column(ARRAY(BYTEA), nullable=True)  # Stores multiple images as BYTEA[]
+    event_images = db.Column(MutableList.as_mutable(ARRAY(BYTEA)), nullable=True)  # Stores multiple images as BYTEA[]
 

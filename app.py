@@ -51,6 +51,9 @@ app.register_blueprint(join_event_blueprint)
 # Register the img rendering blueprint
 from backend.img_rendering import img_blueprint
 app.register_blueprint(img_blueprint)
+# Register the img del rendering blueprint
+from backend.delete_img import delete_image
+app.register_blueprint(delete_image)
 
 
 # Route for the home page (index)
