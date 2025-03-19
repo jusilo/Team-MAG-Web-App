@@ -22,8 +22,25 @@
             <!-- Left Section - Event Details -->
             <div class="event-details">
                 <div class="image-container">
-                    <!-- Add image logic here if necessary -->
-                    <img src="{{ url_for('static', filename='Files/image1.jpg') }}" alt="Event Image" width="100%">
+                    <div class="carousel">
+                        {% if album and album.event_images %}
+                            {% for i in range(album.event_images|length) %}
+                            <div class="carousel-item">
+                                <img src="{{ url_for('img.image', album_id=album.album_id, image_index=i) }}"
+                                     alt="Event Image {{ i }}" class="{{ 'active' if i == 0 else '' }}">
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="carousel-item">
+                                <img src="{{ url_for('static', filename='images/no-image.jpg') }}" alt="No Image Available">
+                           
+                        {% endif %}
+                   
+                                <button type="button" class="carousel-prev">❮</button>
+                                <button type="button" class="carousel-next">❯</button>
+                            </div>
+
+                    </div>
                 </div>
                 <div class="description-title">Description</div>
                 <div class="description-box">
@@ -50,5 +67,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
     <script src="{{ url_for('static', filename='js/edit-event.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
 </body>
 </html>

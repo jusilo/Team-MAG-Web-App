@@ -10,14 +10,13 @@ function confirmAddEvent(url) {
         cancelButtonText: 'No, cancel',
     }).then((result) => {
         if (result.isConfirmed) {
-            // Redirect to the "add event" page if confirmed
             window.location.href = url;
         }
     });
 }
-function confirmJoin(event, eventId) {
-    event.preventDefault(); // Prevent the form from submitting immediately
 
+function confirmJoin(event, eventId) {
+    event.preventDefault();
     Swal.fire({
         title: 'Are you sure?',
         text: 'Do you want to join this event?',
@@ -27,15 +26,13 @@ function confirmJoin(event, eventId) {
         cancelButtonText: 'No, go back'
     }).then((result) => {
         if (result.isConfirmed) {
-            // If confirmed, submit the form
             document.getElementById('join-event-form-' + eventId).submit();
         }
     });
 }
 
 function confirmEdit(event, eventId) {
-    event.preventDefault(); // Prevent the default action
-
+    event.preventDefault();
     Swal.fire({
         title: 'Are you sure?',
         text: 'Do you want to edit this event?',
@@ -45,15 +42,13 @@ function confirmEdit(event, eventId) {
         cancelButtonText: 'No, go back'
     }).then((result) => {
         if (result.isConfirmed) {
-            // If confirmed, redirect to the edit event page
-            window.location.href = "/edit-event/" + eventId;  // Redirect to the edit page
+            window.location.href = "/edit-event/" + eventId;
         }
     });
 }
 
 function confirmCancel(event, eventId) {
-    event.preventDefault(); // Prevent the form from submitting immediately
-
+    event.preventDefault();
     Swal.fire({
         title: 'Are you sure?',
         text: 'Do you want to cancel this event?',
@@ -63,67 +58,43 @@ function confirmCancel(event, eventId) {
         cancelButtonText: 'No, keep it'
     }).then((result) => {
         if (result.isConfirmed) {
-            // If confirmed, submit the form
             document.getElementById('cancel-event-form-' + eventId).submit();
         }
     });
 }
 
-function confirmJoin(event, eventId) {
-    event.preventDefault(); // Prevent the form from submitting immediately
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.getElementById("logout-btn");
 
+    // Check if the logout button is found
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            confirmLogout();
+        });
+    } else {
+        console.error("Logout button not found!");
+    }
+});
+
+function confirmLogout() {
     Swal.fire({
         title: 'Are you sure?',
-        text: 'Do you want to join this event?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, join it!',
-        cancelButtonText: 'No, go back'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // If confirmed, submit the form
-            document.getElementById('join-event-form-' + eventId).submit();
-        }
-    });
-}
-
-function confirmEdit(event, eventId) {
-    event.preventDefault(); // Prevent the default action
-
-    Swal.fire({
-        title: 'Are you sure?',
-        text: 'Do you want to edit this event?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, edit it!',
-        cancelButtonText: 'No, go back'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // If confirmed, redirect to the edit event page
-            window.location.href = "/edit-event/" + eventId;  // Redirect to the edit page
-        }
-    });
-}
-
-function confirmCancel(event, eventId) {
-    event.preventDefault(); // Prevent the form from submitting immediately
-
-    Swal.fire({
-        title: 'Are you sure?',
-        text: 'Do you want to cancel this event?',
+        text: "You are about to log out!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, cancel it!',
-        cancelButtonText: 'No, keep it'
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, log out!',
+        cancelButtonText: 'Cancel'
     }).then((result) => {
         if (result.isConfirmed) {
-            // If confirmed, submit the form
-            document.getElementById('cancel-event-form-' + eventId).submit();
+            // Submit the form if the user confirms the logout
+            document.getElementById("logout-form").submit();
         }
     });
 }
 
-window.onload = function() {
+window.onload = function () {
     const messages = document.getElementById('flash-messages');
     if (messages) {
         const messageList = messages.children;
@@ -131,7 +102,6 @@ window.onload = function() {
             const message = messageList[i].innerHTML;
             const category = messageList[i].classList;
 
-            // Customize alert based on category (success, danger, etc.)
             if (category.contains('success')) {
                 Swal.fire({
                     icon: 'success',
@@ -177,6 +147,55 @@ window.onload = function() {
     }
 };
 
+//for carousel
+function moveSlide(direction, eventId) {
+    try {
+        const slidesContainer = document.querySelector(`#slides-${eventId}`);
+        if (!slidesContainer) {
+            console.error(`Slides container not found for event ${eventId}`);
+            return;
+        }
+
+        const slides = slidesContainer.querySelectorAll('img');
+        if (!slides || slides.length === 0) {
+            console.error(`No slides found for event ${eventId}`);
+            return;
+        }
+
+        let currentIndex = Array.from(slides).findIndex(img => img.classList.contains('active'));
+        
+        // If no active slide is found, activate the first one
+        if (currentIndex === -1) {
+            currentIndex = 0;
+            slides[currentIndex].classList.add('active');
+            return;
+        }
+
+        // Remove active class from current slide
+        slides[currentIndex].classList.remove('active');
+        
+        // Calculate new index
+        currentIndex = (currentIndex + direction + slides.length) % slides.length;
+        
+        // Add active class to new slide
+        slides[currentIndex].classList.add('active');
+        
+        console.log(`Moved to slide ${currentIndex} for event ${eventId}`);
+    } catch (error) {
+        console.error('Error in moveSlide:', error);
+    }
+}
+
+// Add event listeners for carousel buttons when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click event listeners to all carousel buttons
+    document.querySelectorAll('.prev, .next').forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Prevent any parent elements from handling the click
+            e.stopPropagation();
+        });
+    });
+});
 
 /*document.addEventListener("DOMContentLoaded", function () {
     const addEventBtn = document.querySelector(".add-event-btn");
@@ -207,44 +226,4 @@ function loadEvents() {
         eventGrid.appendChild(eventCard);
     });
 }
-
-function deleteEvent(eventId) {
-    let events = JSON.parse(localStorage.getItem("events")) || [];
-    events = events.filter(event => event.id !== eventId); // Filter event by ID
-    localStorage.setItem("events", JSON.stringify(events));
-    loadEvents(); // Reload events after deletion
-}
-document.getElementById("search").addEventListener("input", function () {
-    let filter = this.value.toLowerCase().trim(); // Get input and trim spaces
-    let events = document.querySelectorAll(".event-card"); // Select all event cards
-    let hasResults = false;
-
-    events.forEach(event => {
-        let title = event.querySelector("h3").textContent.toLowerCase(); // Get event title
-        if (title.includes(filter)) {
-            event.style.display = "block"; // Show matching event
-            hasResults = true;
-        } else {
-            event.style.display = "none"; // Hide non-matching event
-        }
-    });
-
-    // Handle "No Events Found" message
-    let noResultsMessage = document.getElementById("noResults");
-    if (!hasResults) {
-        if (!noResultsMessage) {
-            noResultsMessage = document.createElement("p");
-            noResultsMessage.id = "noResults";
-            noResultsMessage.textContent = "No events found.";
-            noResultsMessage.style.textAlign = "center";
-            noResultsMessage.style.color = "gray";
-            document.getElementById("eventGrid").appendChild(noResultsMessage);
-        }
-    } else {
-        if (noResultsMessage) {
-            noResultsMessage.remove();
-        }
-    }
-    });*/
-
-
+;*/

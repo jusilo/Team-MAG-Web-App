@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, session, request, flash
 from app import db
-from .model import Event  # Import the Event model from the main app
+from .model import Event,Event_album  # Import the Event model from the main app
 from datetime import datetime
 
 edit_events_blueprint = Blueprint('edit-events', __name__, template_folder='frontend/templates')
@@ -9,6 +9,7 @@ edit_events_blueprint = Blueprint('edit-events', __name__, template_folder='fron
 def editevent(event_id):
     # Get the event object by ID
     event = Event.query.get(event_id)
+    album = Event_album.query.filter_by(event_id=event.event_id).first()
     
     # If event does not exist, redirect to home page
     if not event:
@@ -28,7 +29,7 @@ def editevent(event_id):
                 event_day = Event.parse_event_day(event_day_str)  # Safely parse the event date
             except ValueError as e:
                 # Handle invalid date error (e.g., show an error message to the user)
-                return render_template('edit-event.html', event=event, error_message=str(e))
+                return render_template('edit-event.html', event=event, album=album, error_message=str(e))
 
             # Update the event object with new values
             event.event_name = event_name
@@ -51,4 +52,4 @@ def editevent(event_id):
             return redirect(url_for('events.home_page'))  # Redirect to home page after canceling
     
     # Render the edit event page with the event data
-    return render_template('edit-event.html', event=event)
+    return render_template('edit-event.html', event=event, album=album)
