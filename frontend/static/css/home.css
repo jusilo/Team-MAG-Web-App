@@ -407,19 +407,79 @@ textarea {
 }
 
 .event-images {
+    position: relative;
     height: 400px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-
+    margin-bottom: 20px;
+    padding: 0;
 }
 
-.event-images img {
-    max-width: 100%;
+.carousel-container {
+    position: relative;
+    width: 100%;
     height: 100%;
-    border-radius: 8px;
+    overflow: hidden;
+}
+
+.slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slides img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none;
+    border-radius: 10px;
+    background: #f0f0f0;
+}
+
+.slides img.active {
+    display: block;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev:active,
+.next:active {
+    transform: translateY(-50%) scale(0.95);
 }
 
 .sticky-btn {
@@ -453,45 +513,5 @@ a {
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.slides img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* ensures the whole image fits inside without cropping */
-    display: none;
-    border-radius: 10px;
-    background: #f0f0f0; /* optional: fallback background */
-}
-
-.slides img.active {
-    display: block;
-}
-
-.prev,
-.next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 12px;
-    cursor: pointer;
-    border-radius: 50%;
-    user-select: none;
-    z-index: 10;
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
-.prev:hover,
-.next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 10px;
 }

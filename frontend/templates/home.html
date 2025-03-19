@@ -54,14 +54,16 @@
                     {% set album = event_albums[event.event_id] %}
                     {% if album and album.event_images|length > 0 %}
                     <div class="event-images">
-                        <div class="slides" id="slides-{{ event.event_id }}">
-                            {% for i in range(album.event_images | length) %}
-                            <img src="{{ url_for('img.image', album_id=album.album_id, image_index=i) }}"
-                                alt="Event Image {{ i }}" class="{{ 'active' if i == 0 else '' }}">
-                            {% endfor %}
+                        <div class="carousel-container">
+                            <div class="slides" id="slides-{{ event.event_id }}">
+                                {% for i in range(album.event_images | length) %}
+                                <img src="{{ url_for('img.image', album_id=album.album_id, image_index=i) }}"
+                                    alt="Event Image {{ i }}" class="{{ 'active' if i == 0 else '' }}">
+                                {% endfor %}
+                            </div>
+                            <button type="button" class="prev" onclick="moveSlide(-1, '{{ event.event_id }}')">❮</button>
+                            <button type="button" class="next" onclick="moveSlide(1, '{{ event.event_id }}')">❯</button>
                         </div>
-                        <button class="prev" onclick="moveSlide(-1, {{ event.event_id }})">❮</button>
-                        <button class="next" onclick="moveSlide(1, {{ event.event_id }})">❯</button>
                     </div>
                     {% else %}
                     <p>No images for this event.</p>
