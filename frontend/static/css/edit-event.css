@@ -141,7 +141,9 @@ textarea {
 }
 
 /* ========== Save Button ========== */
-.save-btn {
+
+
+.edit-btn {
     width: auto; /* Keeps width based on content */
     padding: 10px 20px;
     border: none;
@@ -149,22 +151,20 @@ textarea {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s;
-    background: purple;
+    background-color: #6c7ae0;
     color: white;
     text-align: center;
     display: inline-block; /* Keeps it inline */
     margin: 10px 0; /* Adds spacing but does not center */
 }
 
-.save-btn:hover {
-    background: darkviolet;
+.edit-btn:hover {
+    background-color: #0056b3;
 }
 
 /* ========== Delete Button Centered ========== */
-.delete-btn {
-    display: block; /* Makes it a block element */
-    margin: 10px auto; /* Centers it horizontally */
-    width: auto; /* Keeps the button width dynamic */
+.cancel-btn {
+    width: auto; /* Keeps width based on content */
     padding: 10px 20px;
     border: none;
     border-radius: 8px;
@@ -176,7 +176,7 @@ textarea {
     text-align: center;
 }
 
-.delete-btn:hover {
+.cancel-btn:hover {
     background: rgba(255, 0, 0, 0.4);
 }
 

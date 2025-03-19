@@ -1,5 +1,5 @@
 /* General Styles */
-:root {
+/*:root {
     --bg-color: #121212;
     --text-color: #ffffff;
     --header-bg: #1e1e1e;
@@ -13,7 +13,7 @@
     --header-bg: #1e1e1e;
     --button-bg: #bb86fc;
     --button-text: #000000;
-}
+}*/
 
 body {
     font-family: 'Inter', sans-serif;
@@ -114,6 +114,16 @@ button {
     transition: background-color 0.3s ease; /* Smooth transition */
 }
 
+.add-event-btn {
+    display: inline-block;
+    background-color: #6c7ae0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
 button:hover {
     background-color: #4338ca; /* Slightly darker on hover */
 }
@@ -156,11 +166,12 @@ button:active {
 
 /* Cancel Event Button (specific to the "Cancel Event" action) */
 .cancel-event-btn {
-    background-color: #f44336; /* Red color for cancel action */
+    background: rgba(255, 0, 0, 0.2);
+    color: darkred; /* Red color for cancel action */
 }
 
 .cancel-event-btn:hover {
-    background-color: #d32f2f;
+    background: rgba(255, 0, 0, 0.4);
 }
 
 /* Disable "Joined" Button */
@@ -291,18 +302,18 @@ textarea {
     color: #666;
 }
 
-.event-button {
+.edit-event-btn {
     display: inline-block;
-    background: #007bff;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 25px;
+    background-color: #6c7ae0;
+    color: white;
+    border: none;
+    border-radius: 8px;
     text-decoration: none;
     transition: background 0.3s ease;
 }
 
-.event-button:hover {
-    background: #0056b3;
+.edit-event-btn:hover {
+    background-color: #0056b3;
 }
 
 /* Search Bar Container */
@@ -539,6 +550,7 @@ textarea {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
+    z-index: 9999; /* A large value ensures it's in front */
 }
 
 .sticky-btn:hover {
