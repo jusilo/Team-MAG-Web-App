@@ -1,18 +1,40 @@
 /* General Styles */
+:root {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --header-bg: #1e1e1e;
+    --button-bg: #bb86fc;
+    --button-text: #000000;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --header-bg: #1e1e1e;
+    --button-bg: #bb86fc;
+    --button-text: #000000;
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
-    /* Using Roboto font from Google Fonts */
+    font-family: 'Inter', sans-serif;
+    /* Using Inter font from Google Fonts */
     margin: 0;
     padding: 20px;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Soft gradient background */
-    color: #333; /* Softer text color */
-    line-height: 1.6; /* Improved line height for readability */
+    background-color: var(--bg-color); /* Softer background color */
+    color: var(--text-color); /* Softer text color */
+    line-height: 1.7; /* Improved line height for readability */
     -webkit-font-smoothing: antialiased; /* For smoother font rendering on macOS/iOS */
     -moz-osx-font-smoothing: grayscale; /* For smoother font rendering on Firefox macOS */
     height: 100vh; /* Ensure the body takes the full height of the viewport */
     background-attachment: fixed; /* Ensure the background stays fixed */
     background-position: center center; /* Center the background */
     background-size: cover; /* Ensure the background covers the entire screen */
+    font-size: 16px;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
 }
 
 .container {
@@ -23,6 +45,7 @@ body {
     /*  Margin auto for horizontal centering, 0 for top/bottom */
     text-align: center;
     /* Consider if you *really* need text-align: center on the container level. Often better to control text alignment within specific sections. */
+    min-height: calc(100vh - 200px); /* Adjust 200px based on your header/footer height */
 }
 
 /* Header with Transparent Glass Effect */
@@ -30,41 +53,61 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
-    /* Slightly more margin below header */
-    padding: 15px 20px;
-    /* Add vertical and horizontal padding */
-
-    /* Glass Effect Changes Below */
-    background-color: rgba(255, 255, 255, 0.6);
-    /* White background with 60% opacity (adjust as needed) */
-    backdrop-filter: blur(10px);
-    /* Adjust blur amount as needed */
-    -webkit-backdrop-filter: blur(10px);
-    /* For Safari & older browsers */
-
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-    /* Subtle shadow (you can keep this or adjust) */
-    border-radius: 8px;
-    /* Optional: Rounded corners for header (keep if you like rounded corners) */
-    max-width: 4000px;
+    margin-bottom: 2rem;
+    padding: 1rem 2rem;
+    background-color: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
 }
 
 header h1 {
-    font-size: 28px;
-    /* Adjust size as needed */
+    font-size: 2rem;
     margin: 0;
-    color: #333;
-    /* Or your brand color */
-    font-weight: 700;
-    /* Bold font weight for title */
+    color: #1a1a1a;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+}
+
+header nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+header nav a:hover {
+    color: #1a1a1a;
+    background: rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    header nav {
+        gap: 1rem;
+    }
 }
 
 /* General Button Styles */
 button {
     padding: 12px 20px; /* Slightly larger padding */
-    background-color: #6c7ae0; /* Match the gradient theme from index.html */
-    color: white;
+    background-color: var(--button-bg); /* Match the gradient theme from index.html */
+    color: var(--button-text);
     border: none;
     cursor: pointer;
     border-radius: 7px; /* Rounded corners for the button */
@@ -72,7 +115,7 @@ button {
 }
 
 button:hover {
-    background-color: #596ab2; /* Slightly darker on hover */
+    background-color: #4338ca; /* Slightly darker on hover */
 }
 
 button:focus {
@@ -127,15 +170,23 @@ button:active {
     cursor: not-allowed;
 }
 
+.joined-events {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem; /* Increased spacing */
+    padding-bottom: 2rem;
+}
+
 /* Input Fields */
 input[type="text"],
 input[type="date"],
 textarea {
-    padding: 12px 15px;
+    padding: 12px 16px;
     /* Slightly more padding */
-    border: 1px solid #ddd;
+    border: 1px solid #e2e8f0;
     /* Lighter border */
-    border-radius: 7px;
+    border-radius: 8px;
     /* Consistent border-radius */
     font-size: 16px;
     width: 100%;
@@ -150,8 +201,8 @@ input[type="text"]:focus,
 input[type="date"]:focus,
 textarea:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1), inset 0 1px 3px rgba(0, 0, 0, 0.06);
     /* Focus ring and inset shadow */
 }
 
@@ -165,99 +216,93 @@ textarea {
 /* Event Grid */
 .event-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    /* Adjust 250px as needed */
-    gap: 25px;
-    padding: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Adjust 300px as needed */
+    gap: 30px;
+    padding: 30px;
     /* Optional: Background color for grid area if desired: */
     /* background-color: #fff;
     border-radius: 10px; */
 }
 
-/* Event Cards with Transparent Glass Effect */
+.event-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem;
+}
+
 .event-card {
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: #fff;
     border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 0 1rem;
+    animation: fadeIn 0.5s ease-in-out;
+    transform: scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transform: scale(1.02);
+    border-color: rgba(79, 70, 229, 0.2);
 }
 
-.event-card img {
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.event-image {
     width: 100%;
     height: 150px;
     object-fit: cover;
-    border-radius: 5px;
 }
 
-.event-card h3 {
-    font-size: 20px;
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #333;
+.event-content {
+    padding: 1.5rem;
+}
+
+.event-title {
+    font-size: 1.5rem;
     font-weight: 600;
-    line-height: 1.3;
-    text-align: left;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
 }
 
-
-.event-card p {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.5;
-    margin-bottom: 8px;
-    text-align: left;
+.event-description {
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 1rem;
 }
 
-.event-card strong {
-    font-weight: 600;
-    color: #444;
-}
-
-.event-card ul {
-    list-style: none;
-    /* Remove default bullet points */
-    padding-left: 0;
-    margin-top: 5px;
-    text-align: left;
-    /* Left-align lists */
-}
-
-.event-card li {
-    font-size: 14px;
+.event-date {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
     color: #666;
-    margin-bottom: 4px;
-    /* Spacing between list items */
 }
 
-/* If you add images later: */
-/* .event-card img {
-    width: 100%;
-    height: 200px;  Adjust height
-    object-fit: cover;
-    border-radius: 12px 12px 0 0;  Rounded corners on top only, matching card
-    margin-bottom: 15px;  Spacing between image and text
-} */
+.event-button {
+    display: inline-block;
+    background: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
 
-/* Style buttons *within* the event card */
-.event-card button {
-    margin-top: 15px;
-    /* Space above buttons in card */
-    width: auto;
-    /* Adjust button width if needed, 'auto' often good in cards */
-    display: block;
-    /* Make buttons stack vertically if needed */
-    margin-left: auto;
-    /* Right-align buttons if desired */
-    margin-right: auto;
-    /* Right-align buttons if desired */
+.event-button:hover {
+    background: #0056b3;
 }
 
 /* Search Bar Container */
@@ -409,7 +454,7 @@ textarea {
 .event-images {
     position: relative;
     height: 400px;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     padding: 0;
 }
 
@@ -514,4 +559,27 @@ a {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
+}
+
+footer {
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+    background-color: white;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255,255,255,0.3);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.copyright {
+    color: #4a5568;
+    font-size: 0.9rem;
+    margin: 0;
 }
