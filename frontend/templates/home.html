@@ -32,8 +32,8 @@
                     <input type="text" id="search" name="search" placeholder="Search events...">
                     <i class="search-icon fas fa-search"></i>
                 </form>
+                
             </div>
-            <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
         </header>
 
         <div class="event-grid" id="eventGrid">
@@ -114,6 +114,7 @@
     <form id="logout-form" action="{{ url_for('login.logout') }}" method="POST">
         <button type="button" class="sticky-btn" id="logout-btn">Log Out</button>
     </form>
+    <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
     {% endif %}
 
     <footer>

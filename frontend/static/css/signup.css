@@ -1,0 +1,68 @@
+/* Theme Variables */
+:root {
+    --bg-color: #f5f7fa;
+    --text-color: #000000;
+    --header-bg: #ffffff;
+    --button-bg: #6c7ae0;
+    --button-text: #ffffff;
+    --card-bg: #ffffff;
+    --card-text: #000000;
+    --input-bg: #ffffff;
+    --input-text: #000000;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --header-bg: #1e1e1e;
+    --button-bg: #bb86fc;
+    --button-text: #000000;
+    --card-bg: #1e1e1e;
+    --card-text: #ffffff;
+    --input-bg: #2d2d2d;
+    --input-text: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-btn i {
+    font-size: 1.2rem;
+}
+
+/* Existing styles below */ 

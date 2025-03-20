@@ -6,22 +6,20 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Soft gradient background */
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
-    background-color: var(--background-color);
+    background: var(--background-color);
     color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 [data-theme='dark'] {
   --background-color: #121212;
-  --text-color: #000000;
+  --text-color: #ffffff;
   --primary-color: #bb86fc;
   --secondary-color: #03dac6;
 }
 
 [data-theme='light'] {
-  --background-color: #ffffff;
+  --background-color: #f5f7fa;
   --text-color: #000000;
   --primary-color: #6200ee;
   --secondary-color: #018786;

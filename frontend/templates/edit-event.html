@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/edit-event.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.8/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
             <h2>Event Details</h2>
-            <a href="{{ url_for('events.home_page') }}"><button class="back-btn">Go Back</button></a>
+            
         </header>
         
         <!-- Form for editing the event -->
@@ -20,26 +21,24 @@
             <!-- Left Section - Event Details -->
             <div class="event-details">
                 <div class="image-container">
-                    <div class="carousel">
-                        {% if album and album.event_images %}
-                            {% for i in range(album.event_images|length) %}
-                            <div class="carousel-item">
-                                <img src="{{ url_for('img.image', album_id=album.album_id, image_index=i) }}"
-                                     alt="Event Image {{ i }}" class="{{ 'active' if i == 0 else '' }}">
-                                <!-- Delete Button inside each carousel-item -->
-                                <button type="button" class="delete-image-btn" data-image-index="{{ i }}" data-album-id="{{ album.album_id }}">🗑</button>
-                            </div>
-                            {% endfor %}
-                        {% else %}
-                            <div class="carousel-item">
-                                <img src="{{ url_for('static', filename='images/no-image.jpg') }}" alt="No Image Available">
-                            </div>
-                        {% endif %}
-                        
-                        <!-- Carousel controls -->
-                        <button type="button" class="carousel-prev">❮</button>
-                        <button type="button" class="carousel-next">❯</button>
-                    </div>
+                    {% if album and album.event_images %}
+                        {% for i in range(album.event_images|length) %}
+                        <div class="carousel-item">
+                            <img src="{{ url_for('img.image', album_id=album.album_id, image_index=i) }}"
+                                 alt="Event Image {{ i }}" class="{{ 'active' if i == 0 else '' }}">
+                            <!-- Delete Button inside each carousel-item -->
+                            <button type="button" class="delete-image-btn" data-image-index="{{ i }}" data-album-id="{{ album.album_id }}">🗑</button>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="carousel-item">
+                            <img src="{{ url_for('static', filename='images/no-image.jpg') }}" alt="No Image Available">
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Carousel controls -->
+                    <button type="button" class="carousel-prev">❮</button>
+                    <button type="button" class="carousel-next">❯</button>
                 </div>
             </div>
             
@@ -83,9 +82,13 @@
             </form>
         </div>
     </div>
+
+    <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
+    <a href="{{ url_for('events.home_page') }}"><button class="back-btn">Go Back</button></a>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
     <script src="{{ url_for('static', filename='js/edit-event.js') }}"></script>
     <script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
     <script src="{{ url_for('static', filename='js/delete_img.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/themeToggle.js') }}"></script>
 </body>
 </html>

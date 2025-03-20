@@ -1,3 +1,34 @@
+/* Theme Variables */
+:root {
+    --bg-color: #f5f7fa;
+    --text-color: #000000;
+    --header-bg: #ffffff;
+    --button-bg: #1e88e5;
+    --button-text: #ffffff;
+    --container-bg: rgba(255, 255, 255, 0.9);
+    --container-border: rgba(255, 255, 255, 0.18);
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --input-text: #000000;
+    --link-color: #1976d2;
+    --link-hover: #1565c0;
+    --title-color: #1e88e5;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --header-bg: #1e1e1e;
+    --button-bg: #bb86fc;
+    --button-text: #000000;
+    --container-bg: rgba(30, 30, 30, 0.9);
+    --container-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(45, 45, 45, 0.9);
+    --input-text: #ffffff;
+    --link-color: #bb86fc;
+    --link-hover: #7b5aa6;
+    --title-color: #bb86fc;
+}
+
 /* Modern gradient background */
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -5,10 +36,10 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Soft gradient background */
-    background-size: 400% 400%;
-    animation: none;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @keyframes gradientBG {
@@ -17,14 +48,39 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-btn i {
+    font-size: 1.2rem;
+}
+
 /* Enhanced glass morphism */
 .signup-container {
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--container-bg);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid var(--container-border);
     width: 400px;
     max-width: 90%;
     transition: transform 0.3s ease;
@@ -39,20 +95,21 @@ body {
     margin: 0 0 1.5rem;
     font-size: 2rem;
     font-weight: 700;
-    color: #1e88e5;
+    color: var(--title-color);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Input fields styling */
 .signup-container input,
 .signup-container select {
-    width: calc(100% - 1.5rem); /* Match gender select width */
+    width: calc(100% - 1.5rem);
     padding: 0.75rem;
     margin: 0.5rem 0;
     border: none;
     border-radius: 8px;
     font-size: 0.9rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--input-bg);
+    color: var(--input-text);
     transition: all 0.3s ease;
 }
 
@@ -60,7 +117,7 @@ body {
 .signup-container select:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
-    background: white;
+    background: var(--input-bg);
 }
 
 /* Button styling */
@@ -70,28 +127,33 @@ body {
     margin: 1rem 0;
     border: none;
     border-radius: 8px;
-    background: #1e88e5; /* Medium blue */
-    color: white;
+    background: var(--button-bg);
+    color: var(--button-text);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .signup-btn:hover {
-    background: #1e88e5; /* Slightly darker blue */
+    opacity: 0.9;
     transform: none;
 }
 
 /* Link styling */
 .back-link {
-    color: #1976d2;
+    color: var(--link-color);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
 }
 
 .back-link:hover {
-    color: #1565c0;
+    color: var(--link-hover);
     text-decoration: underline;
+}
+
+/* Text color for paragraphs */
+p {
+    color: var(--text-color);
 }
