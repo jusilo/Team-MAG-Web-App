@@ -52,12 +52,12 @@ body {
 .theme-toggle-btn {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     padding: 10px 15px;
     background-color: var(--button-bg);
     color: var(--button-text);
     border: none;
-    border-radius: 8px;
+    border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;

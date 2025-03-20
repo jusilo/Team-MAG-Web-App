@@ -1,4 +1,4 @@
-from app import db
+from .extensions import db
 from sqlalchemy.dialects.postgresql import ARRAY, BYTEA
 from datetime import datetime
 from sqlalchemy.ext.mutable import MutableList

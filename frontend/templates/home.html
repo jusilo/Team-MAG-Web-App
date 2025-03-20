@@ -23,10 +23,14 @@
     {% endwith %}
 
     <div class="container">
+        <a href="javascript:void(0)" onclick="confirmMyAddEvent('{{ url_for('my_events') }}')">
+            <button class="myEventButton">My Events</button>
+        </a>
         <header>
             <a href="javascript:void(0)" onclick="confirmAddEvent('{{ url_for('addevent.addevent') }}')">
                 <button class="add-event-btn">Add Event</button>
             </a>
+            
             <div class="search-container">
                 <form action="/search" method="POST">
                     <input type="text" id="search" name="search" placeholder="Search events...">
@@ -47,11 +51,13 @@
                     <p><strong>Location:</strong> {{ event.location }}</p>
                     <p><strong>Date Created:</strong> {{ event.date_created.strftime('%Y-%m-%d %H:%M') }}</p>
                     <p><strong>Event Attendees:</strong></p>
-                    <ul>
+                    <p>
                         {% for attendee in attendees_map[event.event_id] %}
-                        <li>{{ attendee.first_name }} {{ attendee.last_name }}</li>
+                        {{ attendee.first_name }} {{ attendee.last_name }}
+                        {% if not loop.last %},{% endif %}
                         {% endfor %}
-                    </ul>
+
+                    <p>
 
                     {% set album = event_albums[event.event_id] %}
                     {% if album and album.event_images|length > 0 %}
@@ -115,6 +121,7 @@
         <button type="button" class="sticky-btn" id="logout-btn">Log Out</button>
     </form>
     <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
+
     {% endif %}
 
     <footer>

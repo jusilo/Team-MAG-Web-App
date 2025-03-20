@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Events</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my_events.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>My Events</h1>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if joined_events %}
+            <div class="event-grid">
+                {% for event in joined_events %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.event_name }}</h5>
+                            <p class="card-text">{{ event.event_description[:500] }}{% if event.event_description|length > 500 %}...{% endif %}</p>
+                            <div class="event-meta">
+                                <p>{{ event.location }}</p>
+                                <p>{{ event.event_day.strftime('%B %d, %Y') }}</p>
+                                <p>Created by: {{ event.event_creator }}</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <form action="{{ url_for('join_event.cancel_event', event_id=event.event_id) }}" method="POST">
+                                <button type="submit" class="btn-leave">Leave Event</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <div class="alert">
+                    You haven't joined any events yet.
+                </div>
+                <a href="{{ url_for('events.home_page') }}">Browse available events</a>
+            </div>
+        {% endif %}
+
+        
+    </div>
+    <a href="{{ url_for('events.home_page') }}"><button class="back-btn">Go Back</button></a>
+    <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update icon
+            if (newTheme === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html> 

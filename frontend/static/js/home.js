@@ -14,6 +14,10 @@ function confirmAddEvent(url) {
         }
     });
 }
+function confirmMyAddEvent(url) {
+    window.location.href = url;
+
+}
 
 function confirmJoin(event, eventId) {
     event.preventDefault();
