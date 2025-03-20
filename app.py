@@ -1,6 +1,7 @@
 import os
-from flask import Flask, render_template, session,redirect,url_for
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, session,redirect,url_for, flash
+from backend.extensions import db
+from backend.model import Event
 
 
 # Initialize the Flask application
@@ -16,8 +17,8 @@ app.secret_key = os.getenv('SECRET_KEY', 'your-super-secret-key')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://team_mang:admin@localhost:5432/event_app'  # Adjust this
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Initialize SQLAlchemy
-db = SQLAlchemy(app)
+# Initialize SQLAlchemy with app
+db.init_app(app)
 
 # Register the blueprint for registration
 from backend.register import register_blueprint
@@ -61,6 +62,21 @@ app.register_blueprint(delete_image)
 def index():
     return render_template('index.html')  # Will look in the 'frontend' folder for this file
 
+# Route for my events page
+@app.route('/my-events')
+def my_events():
+    # Check if user is logged in
+    user_id = session.get('uid')
+    if not user_id:
+        flash('Please log in to view your events', 'warning')
+        return redirect(url_for('index'))
+    
+    # Query events where the user is in event_attendees
+    joined_events = Event.query.filter(
+        Event.event_attendees.contains([user_id])
+    ).order_by(Event.event_day.desc()).all()
+    
+    return render_template('my_events.html', joined_events=joined_events)
 
 # debug
 if __name__ == '__main__':
