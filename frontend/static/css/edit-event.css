@@ -1,13 +1,74 @@
-/* ========== General Page Styles ========== */
+/* Theme Variables */
+:root {
+    --bg-color: #f5f7fa;
+    --text-color: #000000;
+    --header-bg: #ffffff;
+    --button-bg: #6c7ae0;
+    --button-text: #ffffff;
+    --card-bg: #ffffff;
+    --card-text: #000000;
+    --input-bg: #ffffff;
+    --input-text: #000000;
+    --container-bg: rgba(255, 255, 255, 0.15);
+    --container-border: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --header-bg: #1e1e1e;
+    --button-bg: #bb86fc;
+    --button-text: #000000;
+    --card-bg: #1e1e1e;
+    --card-text: #ffffff;
+    --input-bg: #2d2d2d;
+    --input-text: #ffffff;
+    --container-bg: rgba(30, 30, 30, 0.15);
+    --container-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
 body {
     display: flex;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Soft gradient background */
-    color: #333; /* Softer text color */
-    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     margin: 0;
     padding: 20px 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 60px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-btn i {
+    font-size: 1.2rem;
 }
 
 /* ========== Main Container ========== */
@@ -17,11 +78,11 @@ body {
     align-items: center;
     width: 60%;
     max-width: 490px;
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--container-bg);
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--container-border);
     padding: 40px;
     margin: 0 auto;
 }
@@ -35,16 +96,20 @@ header {
     margin-bottom: 15px;
 }
 
-h1 {
+h1, h2 {
     font-size: 24px;
-    color: black;
+    color: var(--text-color);
     font-weight: bold;
 }
 
 .back-btn {
+    height: 35px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
     padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.3);
-    color: white;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     border: none;
     cursor: pointer;
     border-radius: 6px;
@@ -52,65 +117,7 @@ h1 {
 }
 
 .back-btn:hover {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-/* ========== Image Section ========== */
-.image-container {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.image-container img {
-    width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
-.carousel-item {
-    display: none;
-    width: 100%;
-    transition: opacity 0.5s ease;
-}
-
-.carousel-item.active {
-    display: block;
-}
-
-.carousel img {
-    width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.carousel-prev, .carousel-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 50%;
-    z-index: 2;
-}
-
-.carousel-prev {
-    left: 10px;
-}
-
-.carousel-next {
-    right: 10px;
+    opacity: 0.9;
 }
 
 /* ========== Form Section ========== */
@@ -123,16 +130,18 @@ form {
 
 label {
     font-size: 14px;
-    color: black;
+    color: var(--text-color);
 }
 
 input, textarea {
     width: calc(100% - 20px);
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--container-border);
     border-radius: 5px;
     font-size: 14px;
     margin-right: auto;
+    background-color: var(--input-bg);
+    color: var(--input-text);
 }
 
 textarea {
@@ -140,44 +149,147 @@ textarea {
     resize: none;
 }
 
-/* ========== Save Button ========== */
-
-
 .edit-btn {
-    width: auto; /* Keeps width based on content */
+    width: auto;
     padding: 10px 20px;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s;
-    background-color: #6c7ae0;
-    color: white;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     text-align: center;
-    display: inline-block; /* Keeps it inline */
-    margin: 10px 0; /* Adds spacing but does not center */
+    display: inline-block;
+    margin: 10px 0;
 }
 
 .edit-btn:hover {
-    background-color: #0056b3;
+    opacity: 0.9;
 }
 
-/* ========== Delete Button Centered ========== */
 .cancel-btn {
-    width: auto; /* Keeps width based on content */
+    width: auto;
     padding: 10px 20px;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s;
-    background: rgba(255, 0, 0, 0.2);
-    color: darkred;
+    background-color: rgba(255, 0, 0, 0.2);
+    color: var(--text-color);
     text-align: center;
 }
 
 .cancel-btn:hover {
-    background: rgba(255, 0, 0, 0.4);
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.field {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* ========== Image Section ========== */
+.image-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.image-container img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.carousel-item {
+    display: none;
+    width: 100%;
+    transition: opacity 0.5s ease;
+    position: relative;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+.carousel img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+.carousel-prev:hover, .carousel-next:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.delete-image-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.delete-image-btn:hover {
+    background-color: rgba(255, 0, 0, 0.9);
+}
+
+/* Make sure icons are centered */
+.carousel-prev i, .carousel-next i, .delete-image-btn i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 /* ========== Responsive Design ========== */
@@ -186,12 +298,8 @@ textarea {
         width: 90%;
         padding: 15px;
     }
-}
-    input, textarea {
-    width: calc(100% - 10px);
-}
-.field{
-    margin-top: 10px ;
-    margin-bottom: 10px ;
     
+    input, textarea {
+        width: calc(100% - 10px);
+    }
 }
