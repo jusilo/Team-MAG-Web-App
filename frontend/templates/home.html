@@ -65,25 +65,18 @@
                     {% else %}
                     <p>No images for this event.</p>
                     {% endif %}
-
-
-
-
-
-
-                    
-                    <p><strong>Description:</strong> {{ event.event_description }}</p>
-                    <p><strong>Location:</strong> {{ event.location }}</p>
-                    <p><strong>Date Created:</strong> {{ event.date_created.strftime('%Y-%m-%d %H:%M') }}</p>
-                    <p><strong>Event Attendees:</strong></p>
-                    <p>
-                        {% for attendee in attendees_map[event.event_id] %}
-                        {{ attendee.first_name }} {{ attendee.last_name }}
-                        {% if not loop.last %},{% endif %}
-                        {% endfor %}
-
-                    <p>
-
+                    <div class = "event-meta">
+                        <p><i class="fa-solid fa-info-circle"></i><strong>Description:</strong> {{ event.event_description }}</p>
+                        <p><i class="fa-solid fa-location-dot"></i><strong>Location:</strong> {{ event.location }}</p>
+                        <p><i class="fa-solid fa-calendar-week"></i><strong>Date of Event:</strong> {{ event.event_day.strftime('%B %d, %Y') }}</p>
+                        <p><i class="fa-solid fa-user"></i><strong>Event Attendees:</strong></p>
+                        <p>
+                            {% for attendee in attendees_map[event.event_id] %}
+                            {{ attendee.first_name }} {{ attendee.last_name }}
+                            {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        <p>
+                    </div>
 
 
                     <!-- Conditional Buttons -->

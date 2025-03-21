@@ -17,6 +17,39 @@ document.getElementById("createEventBtn").addEventListener("click", function(eve
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const imageUpload = document.getElementById("imageUpload");
+    const mainImage = document.getElementById("mainImage");
+    const imageThumbnails = document.getElementById("imageThumbnails");
+
+    imageUpload.addEventListener("change", function () {
+        imageThumbnails.innerHTML = ""; // Clear existing thumbnails
+        const files = imageUpload.files;
+
+        if (files.length > 0) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                mainImage.src = e.target.result; // Set main image preview
+            };
+
+            reader.readAsDataURL(files[0]); // Read the first file
+
+            // Generate thumbnails for all selected images
+            Array.from(files).forEach((file) => {
+                const thumbReader = new FileReader();
+                thumbReader.onload = function (e) {
+                    const imgElement = document.createElement("img");
+                    imgElement.src = e.target.result;
+                    imageThumbnails.appendChild(imgElement);
+                };
+                thumbReader.readAsDataURL(file);
+            });
+        }
+    });
+});
+
+
 window.onload = function() {
     const messages = document.getElementById('flash-messages');
     if (messages) {

@@ -41,6 +41,20 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.event-meta {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left (start of the container) */
+    gap: 10px; /* Add space between items */
+}
+
+.event-meta p {
+    margin: 0; /* Remove any default margin */
+}
+
+.event-meta strong {
+    margin-right: 5px; /* Space between label and content */
+}
 h1, h2, h3 {
   font-weight: 700;
   margin-bottom: 1.5rem;
