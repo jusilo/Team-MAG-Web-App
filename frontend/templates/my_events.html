@@ -21,18 +21,44 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-
+        
         {% if joined_events %}
             <div class="event-grid">
+                
                 {% for event in joined_events %}
                     <div class="card">
+                        {% set album = event_albums[event.event_id] %}
+                    {% if album and album.event_images|length > 0 %}
+                    <div class="event-images">
+                        <div class="carousel-container">
+                            <div class="slides" id="slides-{{ event.event_id }}">
+                                {% for i in range(album.event_images | length) %}
+                                <img src="{{ url_for('img.image', album_id=album.album_id, image_index=i) }}"
+                                    alt="Event Image {{ i }}" class="{{ 'active' if i == 0 else '' }}">
+                                {% endfor %}
+                            </div>
+                            <button type="button" class="prev" onclick="moveSlide(-1, '{{ event.event_id }}')">❮</button>
+                            <button type="button" class="next" onclick="moveSlide(1, '{{ event.event_id }}')">❯</button>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p>No images for this event.</p>
+                    {% endif %}
+
+
                         <div class="card-body">
                             <h5 class="card-title">{{ event.event_name }}</h5>
+                            {% set album = event_albums[event.event_id] %}
+                    {% if album and album.event_images|length > 0 %}
+                    
+                    {% else %}
+                    <p>No images for this event.</p>
+                    {% endif %}
                             <p class="card-text">{{ event.event_description[:500] }}{% if event.event_description|length > 500 %}...{% endif %}</p>
                             <div class="event-meta">
-                                <p>{{ event.location }}</p>
-                                <p>{{ event.event_day.strftime('%B %d, %Y') }}</p>
-                                <p>Created by: {{ event.event_creator }}</p>
+                                <p><i class="fa-solid fa-location-dot"></i> {{ event.location }}</p>
+                                <p><i class="fa-solid fa-calendar-week"></i> {{ event.event_day.strftime('%B %d, %Y') }}</p>
+                                <p><i class="fa-solid fa-user"></i> Created by: {{ event.event_creator }}</p>
                             </div>
                         </div>
                         <div class="card-footer">
@@ -57,35 +83,8 @@
     <a href="{{ url_for('events.home_page') }}"><button class="back-btn">Go Back</button></a>
     <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
 
-    <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const icon = themeToggle.querySelector('i');
-        
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.body.setAttribute('data-theme', 'dark');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            document.body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            // Update icon
-            if (newTheme === 'dark') {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        });
-    </script>
+    <!-- Theme Toggle -->
+    <script src="{{ url_for('static', filename='js/themeToggle.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/carousel_for_many.js') }}"></script>
 </body>
 </html> 
