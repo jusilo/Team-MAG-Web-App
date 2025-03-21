@@ -41,6 +41,20 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.event-meta {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left (start of the container) */
+    gap: 10px; /* Add space between items */
+}
+
+.event-meta p {
+    margin: 0; /* Remove any default margin */
+}
+
+.event-meta strong {
+    margin-right: 5px; /* Space between label and content */
+}
 h1, h2, h3 {
   font-weight: 700;
   margin-bottom: 1.5rem;
@@ -236,24 +250,16 @@ textarea {
     /* Minimum height for textareas */
 }
 
-/* Event Grid */
+/* Event Grid - Using Grid */
 .event-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* Adjust 300px as needed */
-    gap: 30px;
+    grid-template-columns: repeat(1, 1fr); /* 1 column for a row layout */
+    grid-gap: 30px; /* Space between items */
     padding: 30px;
-    /* Optional: Background color for grid area if desired: */
-    /* background-color: #fff;
-    border-radius: 10px; */
+    overflow: hidden;
 }
 
-.event-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 3rem;
-}
-
+/* Event Card */
 .event-card {
     background: var(--card-bg);
     border-radius: 12px;
@@ -267,11 +273,24 @@ textarea {
     color: var(--card-text);
 }
 
+/* Event Card hover effect */
 .event-card:hover {
     transform: scale(1.02);
     border-color: rgba(79, 70, 229, 0.2);
 }
 
+/* Optional: Add some responsiveness for smaller screens */
+@media (max-width: 1200px) {
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .event-grid {
+        grid-template-columns: 1fr; /* 1 column for very small screens */
+    }
+}
 @keyframes fadeIn {
     from {
         opacity: 0;

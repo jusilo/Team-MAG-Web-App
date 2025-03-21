@@ -29,6 +29,7 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+
 .back-btn {
     height: 35px;
     position: fixed;
@@ -50,17 +51,17 @@ body {
     height: 100vh;
     background-color: var(--bg-color);
     color: var(--text-color);
-    overflow: hidden; /* Prevents scrollbars if content overflows */
+    overflow: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
     display: flex;
     gap: 30px;
-    position: relative; /* Needed for absolute positioning of glass effect */
+    position: relative;
 }
 
-/* Glass Effect Overlay (Behind the Content) */
+/* Glass Effect Overlay */
 .container::before {
     content: '';
     position: absolute;
@@ -68,61 +69,61 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: inherit; /* Inherits the body's background */
-    filter: blur(20px); /* Adjust blur amount for desired glass effect */
-    z-index: -1; /* Place behind the content */
+    background: inherit;
+    filter: blur(20px);
+    z-index: -1;
 }
 
 /* Event Form Section */
 .event-form-container {
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    background: rgba(255, 255, 255, 0.2);
     padding: 20px;
-    border-radius: 10px; /* Slightly more rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 300px;
-    backdrop-filter: blur(10px); /* Adds the glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: add a subtle border */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .image-placeholder img {
     width: 100%;
     height: auto;
-    border-radius: 8px; /* Slightly more rounded corners */
-    object-fit: cover; /* Ensures image fills the space */
+    border-radius: 8px;
+    object-fit: cover;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Slightly more spacing */
+    gap: 12px;
 }
 
 input, textarea {
     width: 100%;
-    padding: 12px; /* Slightly larger padding */
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent border */
-    border-radius: 6px; /* Slightly more rounded corners */
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent input background */
-    color: #333; /* Darker text for contrast */
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #333;
 }
 
 textarea {
-    resize: vertical; /* Allow vertical resizing */
-    height: 100px; /* Slightly taller textarea */
+    resize: vertical;
+    height: 100px;
 }
 
 button {
-    padding: 12px 20px; /* More padding for a larger button */
-    background: rgba(0, 0, 0, 0.7); /* Slightly transparent black */
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.7);
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s ease; /* Smooth hover transition */
+    transition: background 0.3s ease;
 }
 
 button:hover {
-    background: rgba(0, 0, 0, 0.9); /* Darker hover effect */
+    background: rgba(0, 0, 0, 0.9);
 }
 
 /* Image Upload Section */
@@ -137,33 +138,51 @@ button:hover {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.main-image-preview img {
+/* Main Image Preview */
+.main-image-preview {
     width: 100%;
-    height: auto;
+    max-width: 300px;
+    height: 200px;
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    object-fit: cover;
 }
 
+.main-image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Image Thumbnails */
 .image-thumbnails {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
-    margin-top: 15px; /* More spacing */
+    margin-top: 15px;
 }
 
 .image-thumbnails img {
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent border */
-    transition: transform 0.2s ease; /* Smooth hover effect */
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s ease-in-out;
 }
 
 .image-thumbnails img:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
+    transform: scale(1.1);
 }
 
+/* File Input Styling */
 input[type="file"] {
     margin-top: 15px;
     padding: 8px 12px;
@@ -171,6 +190,22 @@ input[type="file"] {
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     color: #333;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.custom-file-upload:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Theme Toggle Button */
