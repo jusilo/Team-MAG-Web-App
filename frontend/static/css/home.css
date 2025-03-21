@@ -1,47 +1,170 @@
 /* General Styles */
+:root {
+    --bg-color: #f5f7fa;
+    --text-color: #000000;
+    --header-bg: #ffffff;
+    --button-bg: #6c7ae0;
+    --button-text: #ffffff;
+    --card-bg: #ffffff;
+    --card-text: #000000;
+    --input-bg: #ffffff;
+    --input-text: #000000;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --header-bg: #1e1e1e;
+    --button-bg: #bb86fc;
+    --button-text: #000000;
+    --card-bg: #1e1e1e;
+    --card-text: #ffffff;
+    --input-bg: #2d2d2d;
+    --input-text: #ffffff;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
+    /* Using Inter font from Google Fonts */
     margin: 0;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: var(--bg-color); /* Softer background color */
+    color: var(--text-color); /* Softer text color */
+    line-height: 1.7; /* Improved line height for readability */
+    -webkit-font-smoothing: antialiased; /* For smoother font rendering on macOS/iOS */
+    -moz-osx-font-smoothing: grayscale; /* For smoother font rendering on Firefox macOS */
+    height: 100vh; /* Ensure the body takes the full height of the viewport */
+    background-attachment: fixed; /* Ensure the background stays fixed */
+    background-position: center center; /* Center the background */
+    background-size: cover; /* Ensure the background covers the entire screen */
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.event-meta {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left (start of the container) */
+    gap: 10px; /* Add space between items */
+}
+
+.event-meta p {
+    margin: 0; /* Remove any default margin */
+}
+
+.event-meta strong {
+    margin-right: 5px; /* Space between label and content */
+}
+h1, h2, h3 {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
 }
 
 .container {
-    width: 90%;
+    width: 95%;
+    /* Slightly wider container */
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
+    /*  Margin auto for horizontal centering, 0 for top/bottom */
     text-align: center;
+    /* Consider if you *really* need text-align: center on the container level. Often better to control text alignment within specific sections. */
+    min-height: calc(100vh - 200px); /* Adjust 200px based on your header/footer height */
 }
 
-/* Header */
+/* Header with Transparent Glass Effect */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
+    padding: 1rem 2rem;
+    background-color: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+    margin-left: 30px;
 }
 
-header h2 {
-    font-size: 24px;
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: #1a1a1a;
+    font-weight: 800;
+    letter-spacing: -0.05em;
 }
 
-/* Buttons */
+header nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+header nav a:hover {
+    color: #1a1a1a;
+    background: rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    header nav {
+        gap: 1rem;
+    }
+}
+
+/* General Button Styles */
 button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
+    padding: 12px 20px; /* Slightly larger padding */
+    background-color: var(--button-bg); /* Match the gradient theme from index.html */
+    color: var(--button-text);
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
+    border-radius: 7px; /* Rounded corners for the button */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.add-event-btn {
+    display: inline-block;
+    background-color: #6c7ae0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #4338ca; /* Slightly darker on hover */
 }
 
+button:focus {
+    outline: none; /* Remove the default focus outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3); /* Subtle focus outline */
+}
+
+button:active {
+    transform: scale(0.98); /* Slightly scale down the button on click */
+    background-color: #004280; /* Darker background when active */
+}
+
+/* Specific Buttons */
 .primary-btn {
-    background-color: #28a745;
+    background-color: #28a745; /* Green color for primary action */
 }
 
 .primary-btn:hover {
@@ -49,76 +172,216 @@ button:hover {
 }
 
 .danger-btn {
-    background-color: red;
+    background-color: #dc3545; /* Red color for danger action */
 }
 
 .danger-btn:hover {
-    background-color: darkred;
+    background-color: #c82333;
+}
+
+/* Join Event Button (specific to the "Join Event" action) */
+.join-event-btn {
+    background-color: #00c851; /* Green color to match "Join" action */
+    margin-bottom: 2rem;
+}
+
+.join-event-btn:hover {
+    background-color: #00a342;
+}
+
+/* Cancel Event Button (specific to the "Cancel Event" action) */
+.cancel-event-btn {
+    background: rgba(255, 0, 0, 0.2);
+    color: darkred; /* Red color for cancel action */
+}
+
+.cancel-event-btn:hover {
+    background: rgba(255, 0, 0, 0.4);
+}
+
+/* Disable "Joined" Button */
+.joined-btn {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.joined-events {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem; /* Increased spacing */
+    padding-bottom: 2rem;
 }
 
 /* Input Fields */
-input[type="text"], input[type="date"], textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+input[type="text"],
+input[type="date"],
+textarea {
+    padding: 12px 16px;
+    /* Slightly more padding */
+    border: 1px solid #e2e8f0;
+    /* Lighter border */
+    border-radius: 8px;
+    /* Consistent border-radius */
     font-size: 16px;
     width: 100%;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    /* White background for inputs */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    /* Subtle inset shadow */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Event Grid */
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1), inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    /* Focus ring and inset shadow */
+}
+
+textarea {
+    resize: vertical;
+    /* Allow vertical resizing of textareas */
+    min-height: 100px;
+    /* Minimum height for textareas */
+}
+
+/* Event Grid - Using Grid */
 .event-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(1, 1fr); /* 1 column for a row layout */
+    grid-gap: 30px; /* Space between items */
+    padding: 30px;
+    overflow: hidden;
 }
 
-/* Event Cards */
+/* Event Card */
 .event-card {
-    max-width: 100%;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 0 1rem;
+    animation: fadeIn 0.5s ease-in-out;
+    transform: scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid transparent;
+    color: var(--card-text);
 }
 
+/* Event Card hover effect */
 .event-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
+    border-color: rgba(79, 70, 229, 0.2);
 }
 
-.event-card img {
+/* Optional: Add some responsiveness for smaller screens */
+@media (max-width: 1200px) {
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .event-grid {
+        grid-template-columns: 1fr; /* 1 column for very small screens */
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.event-image {
     width: 100%;
     height: 150px;
     object-fit: cover;
-    border-radius: 5px;
+}
+
+.event-content {
+    padding: 1.5rem;
+}
+
+.event-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+.event-description {
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.event-date {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.edit-event-btn {
+    display: inline-block;
+    background-color: #6c7ae0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.edit-event-btn:hover {
+    background-color: #0056b3;
 }
 
 /* Search Bar Container */
 .search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    position: relative;
+}
+
+.search-container form {
     position: relative;
     width: 300px;
-    max-width: 100%;
+    
 }
 
 /* Input Field with Space for Icon */
 .search-container input {
     width: 100%;
-    padding: 12px 40px 12px 15px; /* Extra space on the right for the icon */
-    border: 1px solid #ccc;
-    border-radius: 25px;
+    padding: 12px 40px 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     font-size: 16px;
     outline: none;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    display: block;
+    box-sizing: border-box;
 }
 
-/* Focus Effect */
 .search-container input:focus {
     border-color: #007bff;
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 /* Search Icon */
@@ -127,20 +390,276 @@ input[type="text"], input[type="date"], textarea {
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #555;
+    color: var(--text-color);
     font-size: 18px;
     cursor: pointer;
+    opacity: 0.7;
+}
+
+.search-container .search-icon:hover {
+    opacity: 1;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 70px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-btn i {
+    font-size: 1.2rem;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+
+    /* Example: Tablet and smaller */
+    .container {
+        width: 98%;
+        /* Wider container on smaller screens */
+        padding-left: 15px;
+        /* Reduce horizontal padding */
+        padding-right: 15px;
+    }
+
+    header {
+        padding-left: 15px;
+        /* Match header padding to container */
+        padding-right: 15px;
+        flex-direction: column;
+        /* Stack header elements vertically on smaller screens */
+        align-items: stretch;
+        /* Full width header elements */
+        text-align: center;
+        /* Center text within header on smaller screens */
+    }
+
+    .header-branding {
+        margin-bottom: 15px;
+        /* Space between branding and actions in stacked header */
+    }
+
+    .header-actions {
+        flex-direction: column;
+        /* Stack actions vertically */
+        width: 100%;
+        /* Full width actions */
+        gap: 10px;
+        /* Reduced gap between stacked actions */
+    }
+
+    .search-container {
+        width: 50%;
+        /* Full width search bar on smaller screens */
+    }
+
     .event-grid {
-        grid-template-columns: repeat(2, 1fr);
+        padding: 15px;
+        /* Reduced grid padding */
+        gap: 20px;
+        /* Keep grid gap same or adjust */
+    }
+
+    .event-card {
+        padding: 15px;
+        /* Reduced card padding */
     }
 }
 
-@media (max-width: 480px) {
+
+@media (max-width: 768px) {
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* Keep 2 columns on smaller tablets and larger phones */
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Example: Smaller phones */
+    body {
+        padding: 10px;
+        /* Reduced body padding on small phones */
+    }
+
     .event-grid {
         grid-template-columns: 1fr;
+        /* Single column on small phones */
+        gap: 15px;
+        /* Further reduce grid gap */
     }
+
+    .event-card {
+        padding: 12px;
+        /* Further reduce card padding */
+    }
+
+    /* You might also want to reduce font sizes in event cards for very small screens: */
+    .event-card h3 {
+        font-size: 18px;
+    }
+
+    .event-card p,
+    .event-card li {
+        font-size: 14px;
+    }
+}
+
+.event-images {
+    position: relative;
+    height: 400px;
+    margin-bottom: 2rem;
+    padding: 0;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slides img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none;
+    border-radius: 10px;
+    background: #f0f0f0;
+}
+
+.slides img.active {
+    display: block;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev:active,
+.next:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.sticky-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 12px 20px;
+    background-color: #6c7ae0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    z-index: 998;
+    width: auto; /* Match width with content */
+}
+
+.sticky-btn:hover {
+    background-color: #0056b3;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+}
+
+.event-card {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+footer {
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+    background-color: (--bg-color);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255,255,255,0.3);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.copyright {
+    color: #4a5568;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+li{
+    list-style: none;
+}
+.myEventButton{
+    position: absolute !important;
+    top: 40px;
+    left: 20px;
 }

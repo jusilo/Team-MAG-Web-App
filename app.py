@@ -1,6 +1,7 @@
 import os
-from flask import Flask, render_template, session,redirect,url_for
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template 
+from backend.extensions import db
+from backend.model import Event
 
 
 # Initialize the Flask application
@@ -9,14 +10,15 @@ app = Flask(__name__, template_folder=os.path.join('frontend', 'templates'),
 
 
 # Secret key for flash messages and sessions
-app.secret_key = os.urandom(24)
+#app.secret_key = os.urandom(24)
+app.secret_key = os.getenv('SECRET_KEY', 'your-super-secret-key')
 
 # Database setup (Replace with your PostgreSQL database URL)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://team_mang:admin@localhost:5432/event_app'  # Adjust this
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Initialize SQLAlchemy
-db = SQLAlchemy(app)
+# Initialize SQLAlchemy with app
+db.init_app(app)
 
 # Register the blueprint for registration
 from backend.register import register_blueprint
@@ -43,15 +45,26 @@ app.register_blueprint(search_blueprint)
 from backend.edit_event import edit_events_blueprint
 app.register_blueprint(edit_events_blueprint)
 
+# Register the join event blueprint
+from backend.join_event import join_event_blueprint
+app.register_blueprint(join_event_blueprint)
+
+# Register the img rendering blueprint
+from backend.img_rendering import img_blueprint
+app.register_blueprint(img_blueprint)
+# Register the img del rendering blueprint
+from backend.delete_img import delete_image
+app.register_blueprint(delete_image)
+
+from backend.my_events import myEvent_Blueprint
+app.register_blueprint(myEvent_Blueprint)
+
 # Route for the home page (index)
 @app.route('/')
 def index():
     return render_template('index.html')  # Will look in the 'frontend' folder for this file
 
-# Route for the home page (add event)
-@app.route('/add-event')
-def addevent():
-    return render_template('add-event.html')  # Will look in the 'frontend' folder for this file
+
 
 
 # debug

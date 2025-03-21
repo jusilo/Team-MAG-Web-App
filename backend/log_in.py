@@ -33,7 +33,7 @@ def login():
     return render_template("index.html")  # Stay on login page if login fails
 
 #log out, no ui yet
-@login_blueprint.route('/logout')
+@login_blueprint.route('/logout',methods=['GET', 'POST'])
 def logout():
     session.pop('uid', None)  # Remove user ID from session
     session.pop('email', None)  # Remove email from session 

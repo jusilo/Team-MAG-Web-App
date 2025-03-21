@@ -1,6 +1,104 @@
 // home.js
 
-window.onload = function() {
+function confirmAddEvent(url) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to add a new event?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, go ahead!',
+        cancelButtonText: 'No, cancel',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = url;
+        }
+    });
+}
+function confirmMyAddEvent(url) {
+    window.location.href = url;
+
+}
+
+function confirmJoin(event, eventId) {
+    event.preventDefault();
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to join this event?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, join it!',
+        cancelButtonText: 'No, go back'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('join-event-form-' + eventId).submit();
+        }
+    });
+}
+
+function confirmEdit(event, eventId) {
+    event.preventDefault();
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to edit this event?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, edit it!',
+        cancelButtonText: 'No, go back'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "/edit-event/" + eventId;
+        }
+    });
+}
+
+function confirmCancel(event, eventId) {
+    event.preventDefault();
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to cancel this event?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, cancel it!',
+        cancelButtonText: 'No, keep it'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('cancel-event-form-' + eventId).submit();
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.getElementById("logout-btn");
+
+    // Check if the logout button is found
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            confirmLogout();
+        });
+    } else {
+        console.error("Logout button not found!");
+    }
+});
+
+function confirmLogout() {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You are about to log out!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, log out!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Submit the form if the user confirms the logout
+            document.getElementById("logout-form").submit();
+        }
+    });
+}
+
+window.onload = function () {
     const messages = document.getElementById('flash-messages');
     if (messages) {
         const messageList = messages.children;
@@ -8,7 +106,6 @@ window.onload = function() {
             const message = messageList[i].innerHTML;
             const category = messageList[i].classList;
 
-            // Customize alert based on category (success, danger, etc.)
             if (category.contains('success')) {
                 Swal.fire({
                     icon: 'success',
@@ -53,73 +150,5 @@ window.onload = function() {
         }
     }
 };
-/*document.addEventListener("DOMContentLoaded", function () {
-    const addEventBtn = document.querySelector(".add-event-btn");
-
-    // Redirect to Add Event Page
-    addEventBtn.addEventListener("click", function () {
-        window.location.href = "add-event.html";
-    });
-
-    // Load events from localStorage
-    loadEvents();
-});
-
-function loadEvents() {
-    const eventGrid = document.getElementById("eventGrid");
-    eventGrid.innerHTML = ""; // Clear grid
-    const events = JSON.parse(localStorage.getItem("events")) || [];
-
-    events.forEach(event => {
-        const eventCard = document.createElement("div");
-        eventCard.classList.add("event-card");
-        eventCard.innerHTML = `
-            <img src="${event.mainImage || 'placeholder.jpg'}" alt="Event Image">
-            <h3>${event.name}</h3>
-            <p>${event.place} / ${event.date}</p>
-        `;
-
-        eventGrid.appendChild(eventCard);
-    });
-}
-
-function deleteEvent(eventId) {
-    let events = JSON.parse(localStorage.getItem("events")) || [];
-    events = events.filter(event => event.id !== eventId); // Filter event by ID
-    localStorage.setItem("events", JSON.stringify(events));
-    loadEvents(); // Reload events after deletion
-}
-document.getElementById("search").addEventListener("input", function () {
-    let filter = this.value.toLowerCase().trim(); // Get input and trim spaces
-    let events = document.querySelectorAll(".event-card"); // Select all event cards
-    let hasResults = false;
-
-    events.forEach(event => {
-        let title = event.querySelector("h3").textContent.toLowerCase(); // Get event title
-        if (title.includes(filter)) {
-            event.style.display = "block"; // Show matching event
-            hasResults = true;
-        } else {
-            event.style.display = "none"; // Hide non-matching event
-        }
-    });
-
-    // Handle "No Events Found" message
-    let noResultsMessage = document.getElementById("noResults");
-    if (!hasResults) {
-        if (!noResultsMessage) {
-            noResultsMessage = document.createElement("p");
-            noResultsMessage.id = "noResults";
-            noResultsMessage.textContent = "No events found.";
-            noResultsMessage.style.textAlign = "center";
-            noResultsMessage.style.color = "gray";
-            document.getElementById("eventGrid").appendChild(noResultsMessage);
-        }
-    } else {
-        if (noResultsMessage) {
-            noResultsMessage.remove();
-        }
-    }
-    });*/
 
 
