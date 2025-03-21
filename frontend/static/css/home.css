@@ -616,7 +616,7 @@ a {
 footer {
     margin-top: 3rem;
     padding: 2rem 1rem;
-    background-color: white;
+    background-color: (--bg-color);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-top: 1px solid rgba(255,255,255,0.3);
