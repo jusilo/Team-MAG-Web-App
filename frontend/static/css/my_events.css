@@ -87,6 +87,7 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
+    height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
@@ -98,7 +99,7 @@ body {
 .event-images {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 200px;  /* Fixed height for image container */
     overflow: hidden;
 }
 
@@ -110,8 +111,9 @@ body {
 
 .slides img {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
+    object-position: center;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     position: absolute;
@@ -154,6 +156,7 @@ body {
 .card-body {
     padding: 15px;
     flex: 1;
+    overflow-y: auto;  /* Make the card body scrollable if content exceeds height */
 }
 
 .card-title {
@@ -253,4 +256,17 @@ body {
 /* Optional: Smooth Carousel arrows */
 .carousel-prev, .carousel-next {
     transition: all 0.3s ease;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .slides img {
+        height: 180px;   /* Adjusted height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .slides img {
+        height: 150px;   /* Adjusted height for very small screens */
+    }
 }

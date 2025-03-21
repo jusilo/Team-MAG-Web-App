@@ -152,33 +152,3 @@ window.onload = function () {
 };
 
 
-/*document.addEventListener("DOMContentLoaded", function () {
-    const addEventBtn = document.querySelector(".add-event-btn");
-
-    // Redirect to Add Event Page
-    addEventBtn.addEventListener("click", function () {
-        window.location.href = "add-event.html";
-    });
-
-    // Load events from localStorage
-    loadEvents();
-});
-
-function loadEvents() {
-    const eventGrid = document.getElementById("eventGrid");
-    eventGrid.innerHTML = ""; // Clear grid
-    const events = JSON.parse(localStorage.getItem("events")) || [];
-
-    events.forEach(event => {
-        const eventCard = document.createElement("div");
-        eventCard.classList.add("event-card");
-        eventCard.innerHTML = `
-            <img src="${event.mainImage || 'placeholder.jpg'}" alt="Event Image">
-            <h3>${event.name}</h3>
-            <p>${event.place} / ${event.date}</p>
-        `;
-
-        eventGrid.appendChild(eventCard);
-    });
-}
-;*/
